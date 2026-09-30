@@ -26,17 +26,27 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const { mutate: login, isPending: loginPending } = useLogin();
+
   const form = useForm({
     defaultValues: {
-      email: "",
-      password: "",
+      email: "poweroperator1@gmail.com",
+      password: "Abcd12345",
     },
     validators: {
       onSubmit: LoginSchema,
     },
     onSubmit: ({ value }) => {
-      console.log(value.email);
-      console.log(value.password);
+      const loginData = {
+        email: value.email,
+        password: value.password,
+      };
+
+      login(loginData, {
+        onSuccess: (res) => {
+          console.log("res", res);
+        },
+      });
     },
   });
 
