@@ -21,6 +21,8 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "@tanstack/react-form";
 import { useLogin } from "@/hooks";
 import { LoginSchema } from "@/validation";
+import GoogleLoginComponent from "../modules/google-login/GoogleLogin";
+import { toast } from "@/components/ui/toast";
 
 export function LoginForm({
   className,
@@ -44,7 +46,19 @@ export function LoginForm({
 
       login(loginData, {
         onSuccess: (res) => {
-          console.log("res", res);
+          toast.add({
+            title: "Login Successful",
+            description: "Welcome Back",
+            type: "success",
+          });
+        },
+        onError: (err) => {
+          toast.add({
+            title: "Login Failed",
+            description:
+              err.message || "Something Went Wrong. Please Try Again!",
+            type: "error",
+          });
         },
       });
     },
@@ -130,15 +144,16 @@ export function LoginForm({
 
               <Field>
                 <Button className="bg-green-primary" type="submit">
-                  Login
+                  {loginPending ? "Submitting" : "Login"}
                 </Button>
               </Field>
             </FieldGroup>
           </form>
           <div className="mt-4 space-y-2">
-            <Button variant="outline" type="button" className="w-full">
+            {/* <Button variant="outline" type="button" className="w-full">
               Login with Google
-            </Button>
+            </Button> */}
+            <GoogleLoginComponent />
             <FieldDescription className="text-center">
               Don&apos;t have an account? <a href="#">Sign up</a>
             </FieldDescription>

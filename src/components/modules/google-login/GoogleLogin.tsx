@@ -1,0 +1,49 @@
+"use client";
+import { toast } from "@/components/ui/toast";
+import { useGoogleLogin } from "@/hooks";
+import { GoogleLogin } from "@react-oauth/google";
+
+const GoogleLoginComponent = () => {
+  const { mutate: googleLogin } = useGoogleLogin();
+
+  const handleGoogleLogin = (credentialResponse: { credential?: string }) => {
+    const idToken = credentialResponse.credential;
+    // console.log("id token", idToken);
+
+    if (!idToken) {
+      toast.add({
+        title: "Google Login Failed",
+        description: "Something Went Wrong. Please Try Again!",
+        type: "error",
+      });
+      return;
+    }
+
+    googleLogin(
+      { idToken },
+      {
+        onSuccess: (res) => {
+          toast.add({
+            title: "Google Login Successful",
+            description: "Welcome Back",
+            type: "success",
+          });
+        },
+        onError: (err) => {
+          toast.add({
+            title: "Google Login Failed",
+            description:
+              err.message || "Something Went Wrong. Please Try Again!",
+            type: "error",
+          });
+        },
+      },
+    );
+  };
+
+  return (
+    <GoogleLogin theme="outline" shape="circle" onSuccess={handleGoogleLogin} />
+  );
+};
+
+export default GoogleLoginComponent;
