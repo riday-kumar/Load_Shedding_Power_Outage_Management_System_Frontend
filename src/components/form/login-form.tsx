@@ -119,7 +119,9 @@ export function LoginForm({
               />
 
               <Field>
-                <Button type="submit">Login</Button>
+                <Button className="bg-green-primary" type="submit">
+                  Login
+                </Button>
               </Field>
             </FieldGroup>
           </form>

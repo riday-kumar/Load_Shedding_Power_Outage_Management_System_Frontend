@@ -33,11 +33,11 @@ const Header = () => {
           <Button
             render={<Link href="/login"></Link>}
             nativeButton={false}
-            className="bg-blue-700"
+            className="bg-green-primary text-white"
           >
             Login
           </Button>
-          <Button className="bg-blue-700">SignUp</Button>
+          <Button className="bg-green-primary">SignUp</Button>
         </div>
       </div>
     </div>

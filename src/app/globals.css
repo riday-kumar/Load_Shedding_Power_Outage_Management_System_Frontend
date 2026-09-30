@@ -124,10 +124,25 @@
   body {
     @apply bg-background text-foreground;
   }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
   html {
     @apply font-sans;
   }
+}
+
+.green-primary {
+  color: #006a4e;
+}
+.bg-green-primary {
+  background-color: #006a4e;
+}
+
+.red-primary {
+  color: #f42a41;
+}
+.bg-red-primary {
+  background-color: #f42a41;
 }
