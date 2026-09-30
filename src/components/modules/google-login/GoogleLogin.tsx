@@ -2,6 +2,7 @@
 import { toast } from "@/components/ui/toast";
 import { useGoogleLogin } from "@/hooks";
 import { GoogleLogin } from "@react-oauth/google";
+import { FetchError } from "ofetch";
 
 const GoogleLoginComponent = () => {
   const { mutate: googleLogin } = useGoogleLogin();
@@ -30,10 +31,13 @@ const GoogleLoginComponent = () => {
           });
         },
         onError: (err) => {
+          let errorMsg;
+          if (err instanceof FetchError) {
+            errorMsg = err?.data?.message;
+          }
           toast.add({
             title: "Google Login Failed",
-            description:
-              err.message || "Something Went Wrong. Please Try Again!",
+            description: errorMsg || "Something Went Wrong. Please Try Again!",
             type: "error",
           });
         },

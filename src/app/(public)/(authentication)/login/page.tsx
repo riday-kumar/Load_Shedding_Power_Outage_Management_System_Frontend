@@ -1,6 +1,5 @@
 import Logo from "@/assets/svg/Logo";
 import { LoginForm } from "@/components/form/login-form";
-import { GalleryVerticalEnd } from "lucide-react";
 
 export default function LoginPage() {
   return (

@@ -23,6 +23,7 @@ import { useLogin } from "@/hooks";
 import { LoginSchema } from "@/validation";
 import GoogleLoginComponent from "../modules/google-login/GoogleLogin";
 import { toast } from "@/components/ui/toast";
+import { FetchError } from "ofetch";
 
 export function LoginForm({
   className,
@@ -53,10 +54,13 @@ export function LoginForm({
           });
         },
         onError: (err) => {
+          let errorMsg;
+          if (err instanceof FetchError) {
+            errorMsg = err?.data?.message;
+          }
           toast.add({
             title: "Login Failed",
-            description:
-              err.message || "Something Went Wrong. Please Try Again!",
+            description: errorMsg || "Something Went Wrong. Please Try Again!",
             type: "error",
           });
         },
@@ -150,12 +154,9 @@ export function LoginForm({
             </FieldGroup>
           </form>
           <div className="mt-4 space-y-2">
-            {/* <Button variant="outline" type="button" className="w-full">
-              Login with Google
-            </Button> */}
             <GoogleLoginComponent />
             <FieldDescription className="text-center">
-              Don&apos;t have an account? <a href="#">Sign up</a>
+              Don&apos;t have an account? <a href="/register">Sign up</a>
             </FieldDescription>
           </div>
         </CardContent>
