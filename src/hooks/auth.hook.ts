@@ -1,4 +1,4 @@
-import { userGoogleLogin, userLogin, userRegister } from "@/api";
+import { userGoogleLogin, userLogin, userRegister, verifyAccount } from "@/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useLogin = () => {
@@ -16,5 +16,11 @@ export const useGoogleLogin = () => {
 export const useRegister = () => {
   return useMutation({
     mutationFn: userRegister,
+  });
+};
+
+export const useVerifyAccount = () => {
+  return useMutation({
+    mutationFn: verifyAccount,
   });
 };

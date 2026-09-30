@@ -21,3 +21,13 @@ export const userRegister = async (payload: registerPayload) => {
     body: payload,
   });
 };
+
+export const verifyAccount = async (payload: {
+  otp: string;
+  email: string;
+}) => {
+  return await apiClient("/auth/verify-email", {
+    method: "POST",
+    body: payload,
+  });
+};
