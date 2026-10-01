@@ -1,8 +1,11 @@
+"use client";
 import Logo from "@/assets/svg/Logo";
 import { Button } from "@/components/ui/button";
+import { useUserProfile } from "@/hooks";
 import Link from "next/link";
 
 const Header = () => {
+  const { data, isLoading } = useUserProfile();
   const routes = [
     {
       name: "Home",
@@ -30,20 +33,33 @@ const Header = () => {
         </nav>
         {/* login & register button */}
         <div className="flex gap-2">
-          <Button
-            render={<Link href="/login"></Link>}
-            nativeButton={false}
-            className="bg-green-primary text-white"
-          >
-            Login
-          </Button>
-          <Button
-            render={<Link href="/register"></Link>}
-            nativeButton={false}
-            className="bg-green-primary text-white"
-          >
-            SignUp
-          </Button>
+          {isLoading && (
+            <>
+              <div className="h-10 w-20 animate-pulse rounded-md bg-gray-200" />
+              <div className="h-10 w-20 animate-pulse rounded-md bg-gray-200" />
+            </>
+          )}
+          {!isLoading && !data && (
+            <>
+              <Button
+                render={<Link href="/login"></Link>}
+                nativeButton={false}
+                className="bg-green-primary text-white"
+              >
+                Login
+              </Button>
+              <Button
+                render={<Link href="/register"></Link>}
+                nativeButton={false}
+                className="bg-green-primary text-white"
+              >
+                SignUp
+              </Button>
+            </>
+          )}
+          {!isLoading && data && (
+            <Button className="bg-red-primary text-white">Logout</Button>
+          )}
         </div>
       </div>
     </div>

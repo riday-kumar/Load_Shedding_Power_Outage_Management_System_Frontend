@@ -31,3 +31,7 @@ export const verifyAccount = async (payload: {
     body: payload,
   });
 };
+
+export const user = async () => {
+  return await apiClient("/user/profile");
+};
