@@ -1,49 +1,43 @@
 import Link from "next/link";
 import { ArrowLeft, Home, ShieldX } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useRouter } from "next/navigation";
 
 export default function AccessDenied() {
+  const router = useRouter();
+  const handleGoBack = () => {
+    router.back();
+  };
   return (
-    <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg text-center">
-        {/* Icon */}
-        <div className="mx-auto mb-6 flex size-20 items-center justify-center rounded-full bg-destructive/10">
-          <ShieldX className="size-10 text-destructive" />
-        </div>
-
-        {/* Error Code */}
-        <p className="text-7xl font-bold tracking-tight text-foreground sm:text-8xl">
-          403
-        </p>
-
-        {/* Heading */}
-        <h1 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-          Access Denied
+    <div className="bg-black flex flex-col flex-1 justify-center items-center">
+      <div>
+        <DotLottieReact src="/forbidden.lottie" loop autoplay />
+        <h1 className="text-center font-bold text-4xl animate-pulse text-red-primary">
+          403 Forbidden
         </h1>
-
-        {/* Description */}
-        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground sm:text-base">
-          You don&apos;t have permission to access this page. Please contact
-          your administrator if you believe this is a mistake.
-        </p>
-
+      </div>
+      <div>
         {/* Actions */}
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button nativeButton={true} variant="outline">
-            <Link href="javascript:history.back()">
-              <ArrowLeft />
-              Go Back
-            </Link>
+          <Button
+            className="flex items-center gap-1 bg-green-primary text-white"
+            onClick={handleGoBack}
+            nativeButton={true}
+            variant="outline"
+          >
+            <ArrowLeft />
+            Go Back
           </Button>
 
-          <Button nativeButton={true}>
-            <Link href="/">
+          <Button nativeButton={true} className="bg-green-primary">
+            <Link href="/" className="text-white flex items-center gap-1">
               <Home />
               Go Home
             </Link>
           </Button>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

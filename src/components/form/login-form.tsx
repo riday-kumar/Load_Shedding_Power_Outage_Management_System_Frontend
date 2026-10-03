@@ -19,18 +19,26 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useForm } from "@tanstack/react-form";
-import { useLogin } from "@/hooks";
+import { useLogin, useUserProfile } from "@/hooks";
 import { LoginSchema } from "@/validation";
 import GoogleLoginComponent from "../modules/google-login/GoogleLogin";
 import { toast } from "@/components/ui/toast";
 import { FetchError } from "ofetch";
 import { useRouter } from "next/navigation";
+import AuthLoading from "../auth/auth-loading";
+import LoginSkeleton from "../skeleton/auth/LoginSkeleton";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const { mutate: login, isPending: loginPending } = useLogin();
+  const { data, refetch, isLoading } = useUserProfile();
+
+  // console.log("login pending", loginPending);
+  console.log({
+    data,
+  });
 
   const router = useRouter();
 
@@ -49,13 +57,31 @@ export function LoginForm({
       };
 
       login(loginData, {
-        onSuccess: (res) => {
+        onSuccess: async (res) => {
+          // console.log("login res", res);
+          const profile = await refetch();
+          const role = profile.data?.data.role;
+
           toast.add({
             title: "Login Successful",
             description: "Welcome Back",
             type: "success",
           });
-          router.push("/");
+          // router.push("/");
+
+          if (role === "ADMIN") {
+            router.push("/admin");
+          } else if (role === "POWER_AUTH") {
+            router.push("/power-auth");
+          } else if (role === "DISTRIBUTOR_MANAGER") {
+            router.push("/manager");
+          } else if (role === "POWER_OPERATOR") {
+            router.push("/power-operator");
+          } else if (role === "TECHNICIAN") {
+            router.push("/technician");
+          } else if (role === "CUSTOMER") {
+            router.push("/customer");
+          }
         },
         onError: (err) => {
           let errorMsg;
@@ -71,6 +97,10 @@ export function LoginForm({
       });
     },
   });
+
+  if (isLoading) {
+    return <LoginSkeleton />;
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
