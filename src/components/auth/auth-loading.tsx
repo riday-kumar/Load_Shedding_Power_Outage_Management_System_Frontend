@@ -1,9 +1,9 @@
-import React from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const AuthLoading = () => {
   return (
-    <div>
-      <p>loading......</p>
+    <div className="bg-black flex flex-col justify-center items-center">
+      <DotLottieReact src="/loading.lottie" loop autoplay />
     </div>
   );
 };

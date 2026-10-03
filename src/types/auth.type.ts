@@ -1,3 +1,6 @@
+import { ReactNode } from "react";
+import { UserRole } from "./user.type";
+
 export interface LoginPayload {
   email: string;
   password: string;
@@ -13,4 +16,9 @@ export interface registerPayload {
   phone?: string;
   address: string;
   password: string;
+}
+
+export interface IProps {
+  children: ReactNode;
+  roles: UserRole[];
 }
