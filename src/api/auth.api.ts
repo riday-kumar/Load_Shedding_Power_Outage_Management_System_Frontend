@@ -35,3 +35,9 @@ export const verifyAccount = async (payload: {
 export const user = async () => {
   return await apiClient("/user/profile");
 };
+
+export const logOut = async () => {
+  return await apiClient("/auth/logout", {
+    method: "post",
+  });
+};

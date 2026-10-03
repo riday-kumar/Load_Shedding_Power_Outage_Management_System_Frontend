@@ -1,4 +1,5 @@
 import {
+  logOut,
   user,
   userGoogleLogin,
   userLogin,
@@ -36,5 +37,11 @@ export const useUserProfile = () => {
     queryKey: ["user"],
     queryFn: user,
     retry: false,
+  });
+};
+
+export const useLogout = () => {
+  return useMutation({
+    mutationFn: logOut,
   });
 };

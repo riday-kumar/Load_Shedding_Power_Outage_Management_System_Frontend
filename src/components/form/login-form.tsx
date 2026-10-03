@@ -24,12 +24,15 @@ import { LoginSchema } from "@/validation";
 import GoogleLoginComponent from "../modules/google-login/GoogleLogin";
 import { toast } from "@/components/ui/toast";
 import { FetchError } from "ofetch";
+import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const { mutate: login, isPending: loginPending } = useLogin();
+
+  const router = useRouter();
 
   const form = useForm({
     defaultValues: {
@@ -52,6 +55,7 @@ export function LoginForm({
             description: "Welcome Back",
             type: "success",
           });
+          router.push("/");
         },
         onError: (err) => {
           let errorMsg;
