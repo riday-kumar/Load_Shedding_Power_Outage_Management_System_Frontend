@@ -3,6 +3,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -16,7 +17,7 @@ import {
 import Logo from "@/assets/svg/Logo";
 import Link from "next/link";
 import { UserRole } from "@/types";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SidebarItems } from "@/types/sidebar.type";
 import {
   adminRoutes,
@@ -26,6 +27,10 @@ import {
   powerOperatorRoutes,
   technicianRoutes,
 } from "@/routes";
+import { Button } from "../ui/button";
+import { useLogout } from "@/hooks";
+import { toast } from "../ui/toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 // This is sample data.
 const data = {
@@ -63,8 +68,38 @@ const sidebarRoutes: Partial<Record<UserRole, SidebarItems>> = {
 };
 
 export function DashboardSidebar({ role }: { role: UserRole }) {
+  const { mutate: logOut } = useLogout();
   const pathName = usePathname();
+  const router = useRouter();
   const routes: SidebarItems = sidebarRoutes[role] || [];
+
+  const queryClient = useQueryClient();
+
+  const handleLogout = () => {
+    logOut(undefined, {
+      onSuccess: () => {
+        toast.add({
+          title: "LogOut!",
+          description: "Logged out successfully",
+          type: "success",
+        });
+
+        queryClient.removeQueries({
+          queryKey: ["user"],
+        });
+
+        router.push("/");
+      },
+
+      onError: () => {
+        toast.add({
+          title: "Logout failed",
+          description: "Something Went Wrong",
+          type: "error",
+        });
+      },
+    });
+  };
 
   return (
     <Sidebar>
@@ -95,7 +130,14 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      {/* ===================== end sidebar content ================ */}
       <SidebarRail />
+      {/* ===================== start sidebar footer ================== */}
+      <SidebarFooter>
+        <Button onClick={handleLogout} variant={"destructive"}>
+          Logout
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   );
 }
