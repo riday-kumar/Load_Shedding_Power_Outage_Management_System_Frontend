@@ -1,4 +1,5 @@
 import RoleGuard from "@/components/auth/role-guard";
+import DashboardShell from "@/components/dashboard/dashboard-shell";
 import { ReactNode } from "react";
 
 const DistributorManagerDashboardLayout = ({
@@ -6,7 +7,11 @@ const DistributorManagerDashboardLayout = ({
 }: {
   children: ReactNode;
 }) => {
-  return <RoleGuard roles={["DISTRIBUTOR_MANAGER"]}>{children}</RoleGuard>;
+  return (
+    <RoleGuard roles={["DISTRIBUTOR_MANAGER"]}>
+      <DashboardShell role="DISTRIBUTOR_MANAGER">{children}</DashboardShell>
+    </RoleGuard>
+  );
 };
 
 export default DistributorManagerDashboardLayout;
