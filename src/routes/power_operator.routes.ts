@@ -5,6 +5,10 @@ export const powerOperatorRoutes = [
     title: "Management",
     items: [
       {
+        title: "Profile",
+        url: "/dashboard/profile",
+      },
+      {
         title: "overview",
         url: `${prefix}`,
       },

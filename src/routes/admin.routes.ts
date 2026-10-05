@@ -2,6 +2,15 @@ const prefix = "/admin";
 
 export const adminRoutes = [
   {
+    title: "Profile",
+    items: [
+      {
+        title: "Profile",
+        url: "/dashboard/profile",
+      },
+    ],
+  },
+  {
     title: "Management",
     items: [
       {
@@ -10,22 +19,6 @@ export const adminRoutes = [
       },
       {
         title: "Create Power Authority",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create Distributor Company",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create Distributor Manager",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "All Users",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "All Distributor Managers",
         url: `${prefix}/add-power-authority`,
       },
     ],
