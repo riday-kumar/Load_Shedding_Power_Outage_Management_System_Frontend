@@ -21,5 +21,5 @@ export const UpdateProfileSchema = z.object({
     .max(300, "Address must not exceed 300 characters")
     .optional(),
 
-  feederId: z.string().optional(),
+  feederId: z.string().trim().optional(),
 });

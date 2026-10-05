@@ -7,9 +7,9 @@ export const useProfileUpdate = () => {
   });
 };
 
-export const useAllFeeders = () => {
+export const useAllFeeders = (payload: string) => {
   return useQuery({
-    queryKey: ["feeders"],
-    queryFn: getAllFeeders,
+    queryKey: ["area-feeder", payload],
+    queryFn: () => getAllFeeders(payload),
   });
 };

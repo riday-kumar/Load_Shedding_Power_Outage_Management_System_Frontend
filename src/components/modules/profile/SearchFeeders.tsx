@@ -1,36 +1,61 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useAllFeeders } from "@/hooks";
+import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-const SearchFeeders = () => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+interface IFeeder {
+  area: string;
+  feeder_name: string;
+  id: string;
+}
 
-  const handleSearch = useDebouncedCallback((term: string) => {
-    console.log("searching", term);
+const SearchFeeders = ({
+  value,
+  onChange,
+}: {
+  value: string | null;
+  onChange: (value: string | null) => void;
+}) => {
+  const [searchArea, setSearchArea] = useState("");
 
-    const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set("area", term);
-    } else {
-      params.delete("area");
-    }
-    replace(`${pathname}?${params.toString()}`);
-  }, 300);
+  const { data: feederData, isLoading: feederDataLoading } =
+    useAllFeeders(searchArea);
+
+  console.log("feederData", feederData);
+  const debouncedSearch = useDebouncedCallback((value: string) => {
+    setSearchArea(value);
+  }, 500);
+
+  // if (feederDataLoading) {
+  //   return <>Loading...</>;
+  // }
 
   return (
-    <div>
-      <Input
-        placeholder="type area name"
-        onChange={(e) => {
-          handleSearch(e.target.value);
-        }}
-        defaultValue={searchParams.get("area")?.toString()}
-      />
-    </div>
+    <>
+      <div className="border border-red-600">
+        <Input
+          placeholder="type area name"
+          name="areaName"
+          onChange={(e) => {
+            debouncedSearch(e.target.value);
+          }}
+        />
+      </div>
+      {feederData &&
+        feederData?.data.map((feeder: IFeeder) => (
+          <Button
+            key={feeder.id}
+            onClick={() => {
+              onChange(feeder.id);
+            }}
+          >
+            {feeder.area}
+          </Button>
+        ))}
+    </>
   );
 };
 

@@ -2,10 +2,12 @@
 import { toast } from "@/components/ui/toast";
 import { useGoogleLogin } from "@/hooks";
 import { GoogleLogin } from "@react-oauth/google";
+import { useRouter } from "next/navigation";
 import { FetchError } from "ofetch";
 
 const GoogleLoginComponent = () => {
   const { mutate: googleLogin } = useGoogleLogin();
+  const router = useRouter();
 
   const handleGoogleLogin = (credentialResponse: { credential?: string }) => {
     const idToken = credentialResponse.credential;
@@ -29,6 +31,7 @@ const GoogleLoginComponent = () => {
             description: "Welcome Back",
             type: "success",
           });
+          router.push("/");
         },
         onError: (err) => {
           let errorMsg;

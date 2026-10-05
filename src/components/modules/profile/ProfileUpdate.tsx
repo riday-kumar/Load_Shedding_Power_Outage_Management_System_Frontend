@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,57 +17,52 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "@/components/ui/toast";
-import { useAllFeeders, useProfileUpdate, useUserProfile } from "@/hooks";
-import { User } from "@/types";
-import { UpdateProfileSchema } from "@/validation";
+import { useProfileUpdate, useUserProfile } from "@/hooks";
+
 import { useForm } from "@tanstack/react-form";
 import { FetchError } from "ofetch";
 import SearchFeeders from "./SearchFeeders";
+import AuthLoading from "@/components/auth/auth-loading";
 
-const ProfileUpdate = ({ user }: { user: User }) => {
+const ProfileUpdate = () => {
+  const { data: userData, isLoading: userProfileLoading } = useUserProfile();
+  // console.log("profile data", userData.data);
+  // const [feederId, setFeederId] = useState("");
+  // console.log("feederId", feederId);
+
   const {
     mutate: updateProfile,
     isPending: loadingUpdateProfile,
     isSuccess: profileUpdateSuccess,
   } = useProfileUpdate();
 
-  const { data: feederData } = useAllFeeders();
-  console.log("feeder data", feederData);
-
-  const { data: userData, isLoading } = useUserProfile();
-  console.log("profile data", userData.data);
+  if (userProfileLoading || !userData.data) {
+    return <AuthLoading />;
+  }
 
   const form = useForm({
     defaultValues: {
       name: userData.data.name ?? null,
       phone: userData.data.phone ?? null,
-      address: userData.data.address ?? null,
-      feederId: userData.data.feederId ?? null,
+      address: userData.data.address ?? "",
+      feederId: userData.data.feederId ?? "",
     },
-    validators: {
-      onSubmit: UpdateProfileSchema,
-    },
-    onSubmit: async ({ value }) => {
+    // validators: {
+    //   onSubmit: UpdateProfileSchema,
+    // },
+    onSubmit: ({ value }) => {
       const updateData = {
         name: value.name,
         phone: value.phone,
         address: value.address,
         feederId: value.feederId,
       };
+      console.log("updateData", value);
 
       updateProfile(updateData, {
         onSuccess: (res) => {
+          console.log("res", res);
           toast.add({
             title: "Success!",
             description: "Profile updated Successfully",
@@ -78,6 +74,7 @@ const ProfileUpdate = ({ user }: { user: User }) => {
           if (err instanceof FetchError) {
             errorMsg = err?.data?.message;
           }
+          console.log("error", err);
           toast.add({
             title: "Profile Update Failed",
             description: errorMsg || "Something Went Wrong. Please Try Again!",
@@ -90,14 +87,15 @@ const ProfileUpdate = ({ user }: { user: User }) => {
 
   return (
     <Dialog>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          form.handleSubmit();
-        }}
-      >
-        <DialogTrigger render={<Button className="m-5 ">Update</Button>} />
-        <DialogContent className="sm:max-w-sm">
+      <DialogTrigger render={<Button className="m-5 ">Edit Profile</Button>} />
+      <DialogContent className="sm:max-w-sm">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            form.handleSubmit();
+          }}
+        >
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>
@@ -187,55 +185,30 @@ const ProfileUpdate = ({ user }: { user: User }) => {
             />
 
             {/* =========== feederId ========= */}
-            <SearchFeeders />
-            <Select>
-              <SelectTrigger className="w-full max-w-48">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Area belongs to Feeder</SelectLabel>
-                  {feederData.data.map((item) => (
-                    <SelectItem key={item.id} value={item.id}>
-                      {item.area}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-
-            <form.Field
-              name="feederId"
-              children={(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
-                return (
-                  <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>Feeder Id</FieldLabel>
-                    <Input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      aria-invalid={isInvalid}
-                      autoComplete="off"
-                      placeholder="Feeder Id"
-                    />
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-                  </Field>
-                );
-              }}
-            />
+            <p>Please Select Your Area</p>
+            <form.Field name="feederId">
+              {(field) => (
+                <SearchFeeders
+                  value={field.state.value}
+                  onChange={field.handleChange}
+                />
+              )}
+            </form.Field>
           </FieldGroup>
           <DialogFooter>
-            <DialogClose render={<Button variant="outline">Cancel</Button>} />
-            <Button type="submit">Save changes</Button>
+            <DialogClose
+              render={
+                <Button type="button" variant="outline">
+                  Cancel
+                </Button>
+              }
+            />
+            <Button type="submit" disabled={loadingUpdateProfile}>
+              Save changes
+            </Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 };

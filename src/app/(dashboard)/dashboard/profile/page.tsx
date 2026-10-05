@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useUserProfile } from "@/hooks";
-import { User, UserRole } from "@/types";
+import { User } from "@/types";
 import AuthLoading from "@/components/auth/auth-loading";
 import ProfileUpdate from "@/components/modules/profile/ProfileUpdate";
 
@@ -129,7 +129,7 @@ export default function ProfilePage() {
           </div>
 
           {/* update button */}
-          <ProfileUpdate user={user} />
+          <ProfileUpdate />
         </CardContent>
       </Card>
     </div>

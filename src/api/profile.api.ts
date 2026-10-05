@@ -8,6 +8,6 @@ export const updateProfile = async (payload: ProfileUpdatePayload) => {
   });
 };
 
-export const getAllFeeders = async () => {
-  return await apiClient("/distributor-manager/feeder");
+export const getAllFeeders = async (payload: string) => {
+  return await apiClient(`/distributor-manager/feeder?area=${payload}`);
 };
