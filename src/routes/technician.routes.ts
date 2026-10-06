@@ -1,26 +1,26 @@
 const prefix = "/admin";
 
-export const technicianRoutes = [
-  {
-    title: "Profile",
-    items: [
-      {
-        title: "Profile",
-        url: "/dashboard/profile",
-      },
-    ],
-  },
-  {
-    title: "Management",
-    items: [
-      {
-        title: "overview",
-        url: `${prefix}`,
-      },
-      {
-        title: "All Works",
-        url: `${prefix}/`,
-      },
-    ],
-  },
-];
+export const technicianRoutes = {
+  navMain: [
+    {
+      title: "Profile",
+      url: "#",
+      items: [
+        {
+          title: "Profile",
+          url: "/dashboard/profile",
+        },
+      ],
+    },
+    {
+      title: "Management",
+      url: "#",
+      items: [
+        {
+          title: "Power Authority",
+          url: "/dashboard/power-authority",
+        },
+      ],
+    },
+  ],
+};

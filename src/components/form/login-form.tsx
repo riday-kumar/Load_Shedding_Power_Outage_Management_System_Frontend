@@ -70,17 +70,17 @@ export function LoginForm({
           // router.push("/");
 
           if (role === "ADMIN") {
-            router.push("/admin");
+            router.push("/dashboard/admin");
           } else if (role === "POWER_AUTH") {
-            router.push("/power-auth");
+            router.push("/dashboard/power-auth");
           } else if (role === "DISTRIBUTOR_MANAGER") {
-            router.push("/manager");
+            router.push("/dashboard/manager");
           } else if (role === "POWER_OPERATOR") {
-            router.push("/power-operator");
+            router.push("/dashboard/power-operator");
           } else if (role === "TECHNICIAN") {
-            router.push("/technician");
+            router.push("/dashboard/technician");
           } else if (role === "CUSTOMER") {
-            router.push("/customer");
+            router.push("/dashboard/customer");
           }
         },
         onError: (err) => {

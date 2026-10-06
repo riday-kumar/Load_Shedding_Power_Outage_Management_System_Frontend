@@ -1,26 +1,26 @@
 const prefix = "/admin";
 
-export const adminRoutes = [
-  {
-    title: "Profile",
-    items: [
-      {
-        title: "Profile",
-        url: "/dashboard/profile",
-      },
-    ],
-  },
-  {
-    title: "Management",
-    items: [
-      {
-        title: "overview",
-        url: `${prefix}`,
-      },
-      {
-        title: "Create Power Authority",
-        url: `${prefix}/add-power-authority`,
-      },
-    ],
-  },
-];
+export const adminRoutes = {
+  navMain: [
+    {
+      title: "Profile",
+      url: "#",
+      items: [
+        {
+          title: "Profile",
+          url: "/dashboard/profile",
+        },
+      ],
+    },
+    {
+      title: "Management",
+      url: "#",
+      items: [
+        {
+          title: "Power Authority",
+          url: "/dashboard/power-authority",
+        },
+      ],
+    },
+  ],
+};

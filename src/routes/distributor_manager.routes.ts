@@ -1,42 +1,26 @@
 const prefix = "/admin";
 
-export const distributorManagersRoutes = [
-  {
-    title: "Profile",
-    items: [
-      {
-        title: "Profile",
-        url: "/dashboard/profile",
-      },
-    ],
-  },
-  {
-    title: "Management",
-    items: [
-      {
-        title: "overview",
-        url: `${prefix}`,
-      },
-      {
-        title: "Create Substation",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create power operator",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create feeder",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create Technician",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Power Distribute",
-        url: `${prefix}/add-power-authority`,
-      },
-    ],
-  },
-];
+export const distributorManagersRoutes = {
+  navMain: [
+    {
+      title: "Profile",
+      url: "#",
+      items: [
+        {
+          title: "Profile",
+          url: "/dashboard/profile",
+        },
+      ],
+    },
+    {
+      title: "Management",
+      url: "#",
+      items: [
+        {
+          title: "Power Authority",
+          url: "/dashboard/power-authority",
+        },
+      ],
+    },
+  ],
+};

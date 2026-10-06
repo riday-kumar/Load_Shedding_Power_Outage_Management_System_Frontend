@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/sidebar";
 import Logo from "@/assets/svg/Logo";
 import Link from "next/link";
-import { UserRole } from "@/types";
+import { SidebarItems, UserRole } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
-import { SidebarItems } from "@/types/sidebar.type";
+// import { SidebarItems } from "@/types/sidebar.type";
 import {
   adminRoutes,
   customerRoutes,
@@ -69,9 +69,14 @@ const sidebarRoutes: Partial<Record<UserRole, SidebarItems>> = {
 
 export function DashboardSidebar({ role }: { role: UserRole }) {
   const { mutate: logOut } = useLogout();
+
   const pathName = usePathname();
   const router = useRouter();
-  const routes: SidebarItems = sidebarRoutes[role] || [];
+
+  const routes: SidebarItems = sidebarRoutes[role] ?? {
+    navMain: [],
+  };
+  // console.log("routes", routes);
 
   const queryClient = useQueryClient();
 
@@ -114,7 +119,7 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
       </SidebarHeader>
       {/* ===================== end sidebar header ================ */}
       <SidebarContent>
-        {routes.map((item, index) => (
+        {/* {routes.map((item, index) => (
           <SidebarGroup key={index}>
             <SidebarMenu>
               {item.items.map((item) => (
@@ -128,7 +133,29 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
               ))}
             </SidebarMenu>
           </SidebarGroup>
-        ))}
+        ))} */}
+        <SidebarGroup>
+          <SidebarMenu>
+            {routes.navMain.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton render={<a href={item.url} />}>
+                  {item.title}
+                </SidebarMenuButton>
+                {item.items?.length ? (
+                  <SidebarMenuSub>
+                    {item.items.map((item) => (
+                      <SidebarMenuSubItem key={item.title}>
+                        <SidebarMenuSubButton render={<a href={item.url} />}>
+                          {item.title}
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                ) : null}
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
       {/* ===================== end sidebar content ================ */}
       <SidebarRail />

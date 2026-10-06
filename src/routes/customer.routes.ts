@@ -1,42 +1,26 @@
 const prefix = "/admin";
 
-export const customerRoutes = [
-  {
-    title: "Profile",
-    items: [
-      {
-        title: "Profile",
-        url: "/dashboard/profile",
-      },
-    ],
-  },
-  {
-    title: "Management",
-    items: [
-      {
-        title: "overview",
-        url: `${prefix}`,
-      },
-      {
-        title: "Create Emergency Outage Req",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create Complaint",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "Create Distributor Manager",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "All Users",
-        url: `${prefix}/add-power-authority`,
-      },
-      {
-        title: "All Distributor Managers",
-        url: `${prefix}/add-power-authority`,
-      },
-    ],
-  },
-];
+export const customerRoutes = {
+  navMain: [
+    {
+      title: "Profile",
+      url: "#",
+      items: [
+        {
+          title: "Profile",
+          url: "/dashboard/profile",
+        },
+      ],
+    },
+    {
+      title: "Management",
+      url: "#",
+      items: [
+        {
+          title: "Power Authority",
+          url: "/dashboard/power-authority",
+        },
+      ],
+    },
+  ],
+};

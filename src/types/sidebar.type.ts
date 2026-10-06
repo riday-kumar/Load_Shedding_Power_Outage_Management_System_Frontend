@@ -1,19 +1,3 @@
-// export const adminRoutes = [
-//   {
-//     title: "Management",
-//     items: [
-//       {
-//         title: "overview",
-//         url: { prefix },
-//       },
-//       {
-//         title: "Add Manager",
-//         url: `${prefix}/add-manager`,
-//       },
-//     ],
-//   },
-// ];
-
 export interface sidebarItem {
   title: string;
   url: string;
@@ -21,7 +5,11 @@ export interface sidebarItem {
 
 export interface SidebarGroup {
   title: string;
+  url: string;
   items: sidebarItem[];
 }
 
-export type SidebarItems = SidebarGroup[];
+// export type SidebarItems = SidebarGroup[];
+export interface SidebarItems {
+  navMain: SidebarGroup[];
+}
