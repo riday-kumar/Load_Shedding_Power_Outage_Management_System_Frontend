@@ -11,3 +11,10 @@ export const updateProfile = async (payload: ProfileUpdatePayload) => {
 export const getAllFeeders = async (payload: string) => {
   return await apiClient(`/distributor-manager/feeder?area=${payload}`);
 };
+
+export const uploadProfilePhoto = async (formData: FormData) => {
+  return await apiClient("/user/profile-image", {
+    method: "PATCH",
+    body: formData,
+  });
+};

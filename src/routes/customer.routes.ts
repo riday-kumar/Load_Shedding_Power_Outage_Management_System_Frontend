@@ -2,6 +2,15 @@ const prefix = "/admin";
 
 export const customerRoutes = [
   {
+    title: "Profile",
+    items: [
+      {
+        title: "Profile",
+        url: "/dashboard/profile",
+      },
+    ],
+  },
+  {
     title: "Management",
     items: [
       {

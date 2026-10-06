@@ -54,6 +54,7 @@ export default function ProfilePage() {
   const { data, isLoading } = useUserProfile();
 
   const user: User = data.data;
+  console.log("user", user);
   const isCustomer = user.role === "CUSTOMER";
 
   if (isLoading) {
@@ -76,7 +77,7 @@ export default function ProfilePage() {
               <Button variant="outline" size="sm">
                 {/* change href to your image upload page */}
                 <Link
-                  href="/profile/upload-image"
+                  href="/dashboard/profile/upload-image"
                   className="flex items-center gap-2"
                 >
                   <Camera className="size-4" />

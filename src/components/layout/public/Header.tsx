@@ -45,6 +45,10 @@ const Header = () => {
       name: "About",
       url: "/about",
     },
+    {
+      name: "Profile",
+      url: "/dashboard/profile",
+    },
   ];
   return (
     <div className="sticky top-0 overflow-hidden  w-full h-20  bg-white shadow-xl">

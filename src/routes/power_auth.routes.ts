@@ -2,6 +2,15 @@ const prefix = "/admin";
 
 export const powerAuthorityRoutes = [
   {
+    title: "Profile",
+    items: [
+      {
+        title: "Profile",
+        url: "/dashboard/profile",
+      },
+    ],
+  },
+  {
     title: "Management",
     items: [
       {
