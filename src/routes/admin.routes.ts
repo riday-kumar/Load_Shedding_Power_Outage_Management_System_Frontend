@@ -17,8 +17,8 @@ export const adminRoutes = {
       url: "#",
       items: [
         {
-          title: "Power Authority",
-          url: "/dashboard/power-authority",
+          title: "National Power Authority",
+          url: "/dashboard/admin/power-authority",
         },
       ],
     },

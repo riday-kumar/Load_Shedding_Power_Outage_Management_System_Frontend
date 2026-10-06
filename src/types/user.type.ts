@@ -6,18 +6,27 @@ export type UserRole =
   | "TECHNICIAN"
   | "CUSTOMER";
 
-export type User = {
+export interface user {
   id: string;
   name: string;
   email: string;
-  phone: string | null;
-  address: string | null;
-  feederId: string | null;
-  role: UserRole;
-  status: string;
+  phone: any;
+  address: any;
+  feederId: any;
+  googleId: any;
+  authProvider: string;
   emailVerified: boolean;
-  imageUrl: string | null;
-};
+  status: UserStatus;
+  role: string;
+  imageUrl: string;
+  imagePublicId: string;
+  isDeleted: boolean;
+  deletedAt: any;
+  createdAt: string;
+  updatedAt: string;
+}
+
+type UserStatus = "ACTIVE" | "BLOCK" | "DELETED";
 
 export interface ProfileUpdatePayload {
   name?: string;
