@@ -22,11 +22,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useAllUsersForAdmin } from "@/hooks";
+import { useAllUsersForAdmin, useUpdateUserStatus } from "@/hooks";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { user, UserRole } from "@/types";
 import { useState } from "react";
 import PowerAuthorityForm from "@/components/form/Power-authority-form";
+import { FetchError } from "ofetch";
+import { toast } from "@/components/ui/toast";
 
 const PowerAuthority = () => {
   const role: UserRole = "POWER_AUTH";
@@ -40,7 +42,66 @@ const PowerAuthority = () => {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
 
-  if (allUsersDataLoadingForAdmin) {
+  const { mutate: changeStatus, isPending: statusChangeLoading } =
+    useUpdateUserStatus();
+
+  const handleUserDelete = (id: string) => {
+    const data = {
+      userId: id,
+      status: "DELETED",
+    };
+    changeStatus(data, {
+      onSuccess: async () => {
+        toast.add({
+          title: "Success!",
+          description: "User Status Changed Successfully!",
+          type: "success",
+        });
+        await allUsersDataForAdminRefetch();
+      },
+      onError: (err) => {
+        let errorMsg;
+        if (err instanceof FetchError) {
+          errorMsg = err?.data?.message;
+        }
+        toast.add({
+          title: "Authority Creation Failed",
+          description: errorMsg || "Something Went Wrong. Please Try Again!",
+          type: "error",
+        });
+      },
+    });
+  };
+
+  const handleUserBlock = (id: string) => {
+    const data = {
+      userId: id,
+      status: "BLOCK",
+    };
+    changeStatus(data, {
+      onSuccess: async () => {
+        toast.add({
+          title: "Success!",
+          description: "User Status Changed Successfully!",
+          type: "success",
+        });
+        await allUsersDataForAdminRefetch();
+      },
+      onError: (err) => {
+        let errorMsg;
+        if (err instanceof FetchError) {
+          errorMsg = err?.data?.message;
+        }
+        toast.add({
+          title: "Authority Creation Failed",
+          description: errorMsg || "Something Went Wrong. Please Try Again!",
+          type: "error",
+        });
+      },
+    });
+  };
+
+  if (allUsersDataLoadingForAdmin || statusChangeLoading) {
     return <AuthLoading />;
   }
 
@@ -104,8 +165,18 @@ const PowerAuthority = () => {
                   {info.status}
                 </TableCell>
                 <TableCell>
-                  <Button variant={"destructive"}>Delete</Button>
-                  <Button variant={"outline"}>Block</Button>
+                  <Button
+                    onClick={() => handleUserDelete(info.id)}
+                    variant={"destructive"}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    onClick={() => handleUserBlock(info.id)}
+                    variant={"outline"}
+                  >
+                    Block
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

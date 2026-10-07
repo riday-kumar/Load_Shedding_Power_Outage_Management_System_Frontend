@@ -15,3 +15,15 @@ export const addPowerAuthority = async (payload: PowerAuthorityData) => {
     body: payload,
   });
 };
+
+export const updateUserStatus = async (payload: {
+  userId: string;
+  status: string;
+}) => {
+  return await apiClient(`/admin/users/${payload.userId}/status`, {
+    method: "PATCH",
+    body: {
+      status: payload.status,
+    },
+  });
+};

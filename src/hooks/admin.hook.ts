@@ -1,4 +1,4 @@
-import { addPowerAuthority, allUsers } from "@/api";
+import { addPowerAuthority, allUsers, updateUserStatus } from "@/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useAllUsersForAdmin = (value: string) => {
@@ -11,5 +11,11 @@ export const useAllUsersForAdmin = (value: string) => {
 export const useAddPowerAuthority = () => {
   return useMutation({
     mutationFn: addPowerAuthority,
+  });
+};
+
+export const useUpdateUserStatus = () => {
+  return useMutation({
+    mutationFn: updateUserStatus,
   });
 };

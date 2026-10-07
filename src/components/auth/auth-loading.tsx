@@ -2,7 +2,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const AuthLoading = () => {
   return (
-    <div className="h-screen bg-black flex flex-col justify-center items-center">
+    <div className="h-screen flex flex-col justify-center items-center">
       <DotLottieReact src="/loading.lottie" loop autoplay />
     </div>
   );
