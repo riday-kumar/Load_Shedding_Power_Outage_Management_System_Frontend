@@ -106,10 +106,10 @@ const PowerAuthority = () => {
   }
 
   return (
-    <div>
+    <div className="space-y-4">
       <Heading text="All National Power Authority" />
       <div>
-        <div className="flex md:justify-end">
+        <div className="flex lg:justify-end mb-4">
           {/* ================= Drawer(Add Authority) ============ */}
           <Drawer
             open={open}

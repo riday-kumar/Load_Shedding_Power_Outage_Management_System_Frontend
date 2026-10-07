@@ -20,6 +20,10 @@ export const adminRoutes = {
           title: "National Power Authority",
           url: "/dashboard/admin/power-authority",
         },
+        {
+          title: "Distributor Company",
+          url: "/dashboard/admin/distributor-company",
+        },
       ],
     },
   ],
