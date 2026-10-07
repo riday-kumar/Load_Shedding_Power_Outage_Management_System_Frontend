@@ -172,9 +172,7 @@ const DistributorManagerForAdmin = () => {
 
         {/* =============== table ============= */}
         <Table>
-          <TableCaption>
-            National Power Authority Shouldn't have more then one active ID
-          </TableCaption>
+          <TableCaption>One Manager Can Manage Only One Company</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead>Name</TableHead>

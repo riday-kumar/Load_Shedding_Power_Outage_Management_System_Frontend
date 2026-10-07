@@ -28,6 +28,10 @@ export const adminRoutes = {
           title: "Distributor Manager",
           url: "/dashboard/admin/distributor-manager",
         },
+        {
+          title: "Users",
+          url: "/dashboard/admin/users",
+        },
       ],
     },
   ],

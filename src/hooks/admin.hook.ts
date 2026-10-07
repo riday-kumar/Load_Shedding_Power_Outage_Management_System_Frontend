@@ -11,8 +11,9 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useAllUsersForAdmin = (value: string) => {
   return useQuery({
-    queryKey: ["allUsersForAdmin"],
+    queryKey: ["allUsersForAdmin", value],
     queryFn: () => allUsers(value),
+    enabled: !!value,
   });
 };
 

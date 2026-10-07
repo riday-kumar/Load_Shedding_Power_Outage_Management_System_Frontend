@@ -13,35 +13,28 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { useAllUsersForAdmin, useUpdateUserStatus } from "@/hooks";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { user, UserRole } from "@/types";
-import { useState } from "react";
-import PowerAuthorityForm from "@/components/form/Power-authority-form";
-import { FetchError } from "ofetch";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "@/components/ui/toast";
+import { useAllUsersForAdmin, useUpdateUserStatus } from "@/hooks";
+import { user, UserRole } from "@/types";
+import { FetchError } from "ofetch";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
-const PowerAuthorityForAdmin = () => {
-  const role: UserRole = "POWER_AUTH";
+const AllUsersForAdmin = () => {
+  //   const role: UserRole = "CUSTOMER";
+  const [role, setRole] = useState("CUSTOMER");
   const {
     data: allUsersDataForAdmin,
     isLoading: allUsersDataLoadingForAdmin,
     refetch: allUsersDataForAdminRefetch,
   } = useAllUsersForAdmin(role);
-  console.log("powerAuthData", allUsersDataForAdmin);
-
-  const [open, setOpen] = useState(false);
-  const isMobile = useIsMobile();
 
   const { mutate: changeStatus, isPending: statusChangeLoading } =
     useUpdateUserStatus();
@@ -111,7 +104,7 @@ const PowerAuthorityForAdmin = () => {
           });
           await allUsersDataForAdminRefetch();
         },
-        onError: (err) => {
+        onError: (err: any) => {
           let errorMsg;
           if (err instanceof FetchError) {
             errorMsg = err?.data?.message;
@@ -126,49 +119,48 @@ const PowerAuthorityForAdmin = () => {
     }
   };
 
+  const roles: UserRole[] = [
+    "ADMIN",
+    "CUSTOMER",
+    "DISTRIBUTOR_MANAGER",
+    "POWER_AUTH",
+    "POWER_OPERATOR",
+    "TECHNICIAN",
+  ];
+
+  const handleRoleChange = (value: UserRole) => {
+    console.log(value);
+    setRole(value);
+  };
+
   if (allUsersDataLoadingForAdmin || statusChangeLoading) {
     return <AuthLoading />;
   }
 
   return (
     <div className="space-y-4">
-      <Heading text="All National Power Authority" />
-      <div>
-        <div className="flex lg:justify-end mb-4">
-          {/* ================= Drawer(Add Authority) ============ */}
-          <Drawer
-            open={open}
-            onOpenChange={setOpen}
-            showSwipeHandle={isMobile}
-            swipeDirection={isMobile ? "down" : "right"}
-          >
-            <DrawerTrigger render={<Button>Add Power Authority</Button>} />
-            <DrawerContent>
-              <DrawerHeader>
-                <DrawerTitle className="text-center">
-                  Add National Power Authority
-                </DrawerTitle>
-              </DrawerHeader>
-              <div className="flex-1 scroll-fade overflow-y-auto p-4">
-                <PowerAuthorityForm
-                  setOpen={setOpen}
-                  allUsersDataForAdminRefetch={allUsersDataForAdminRefetch}
-                />
-              </div>
-              <DrawerFooter>
-                <DrawerClose
-                  render={<Button variant="outline">Cancel</Button>}
-                />
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
-        </div>
+      <Heading text="All Users" />
 
+      <div>
+        <Select onValueChange={(v) => handleRoleChange(v)}>
+          <SelectTrigger className="w-45">
+            <SelectValue placeholder="Role" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {roles.map((item) => (
+                <SelectItem key={item} value={item}>
+                  {item}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
         {/* =============== table ============= */}
         <Table>
-          <TableCaption>
-            National Power Authority Shouldn't have more then one active ID
-          </TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead>Name</TableHead>
@@ -212,4 +204,4 @@ const PowerAuthorityForAdmin = () => {
   );
 };
 
-export default PowerAuthorityForAdmin;
+export default AllUsersForAdmin;
