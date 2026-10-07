@@ -1,5 +1,6 @@
 import {
   addDistributorCompany,
+  addDistributorManager,
   addPowerAuthority,
   allDistributorCompany,
   allUsers,
@@ -43,5 +44,11 @@ export const useDeleteDistributorCompany = () => {
 export const useAddDistributorCompany = () => {
   return useMutation({
     mutationFn: addDistributorCompany,
+  });
+};
+
+export const useAddDistributorManager = () => {
+  return useMutation({
+    mutationFn: addDistributorManager,
   });
 };

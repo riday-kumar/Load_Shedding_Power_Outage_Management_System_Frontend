@@ -34,7 +34,7 @@ import { FetchError } from "ofetch";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
-const DistributorCompanyOverview = () => {
+const DistributorCompanyOverviewForAdmin = () => {
   const {
     data: allDistributorForAdmin,
     isLoading: allDistributorLoadingForAdmin,
@@ -143,7 +143,7 @@ const DistributorCompanyOverview = () => {
                     variant={"destructive"}
                     disabled={info.isDeleted}
                   >
-                    Delete
+                    {deletingCompany ? "Deleting" : "Delete"}
                   </Button>
                 </TableCell>
               </TableRow>
@@ -155,4 +155,4 @@ const DistributorCompanyOverview = () => {
   );
 };
 
-export default DistributorCompanyOverview;
+export default DistributorCompanyOverviewForAdmin;

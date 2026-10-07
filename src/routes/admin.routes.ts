@@ -24,6 +24,10 @@ export const adminRoutes = {
           title: "Distributor Company",
           url: "/dashboard/admin/distributor-company",
         },
+        {
+          title: "Distributor Manager",
+          url: "/dashboard/admin/distributor-manager",
+        },
       ],
     },
   ],

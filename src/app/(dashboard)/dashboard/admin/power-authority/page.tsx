@@ -30,7 +30,7 @@ import PowerAuthorityForm from "@/components/form/Power-authority-form";
 import { FetchError } from "ofetch";
 import { toast } from "@/components/ui/toast";
 
-const PowerAuthority = () => {
+const PowerAuthorityForAdmin = () => {
   const role: UserRole = "POWER_AUTH";
   const {
     data: allUsersDataForAdmin,
@@ -187,4 +187,4 @@ const PowerAuthority = () => {
   );
 };
 
-export default PowerAuthority;
+export default PowerAuthorityForAdmin;

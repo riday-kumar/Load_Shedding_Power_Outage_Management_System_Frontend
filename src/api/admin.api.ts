@@ -46,3 +46,15 @@ export const addDistributorCompany = async (payload: {
     body: payload,
   });
 };
+
+export const addDistributorManager = async (payload: {
+  name: string;
+  email: string;
+  password: string;
+  distributor_id: string;
+}) => {
+  return await apiClient("/admin/distributor-manager", {
+    method: "POST",
+    body: payload,
+  });
+};

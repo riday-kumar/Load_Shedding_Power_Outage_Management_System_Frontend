@@ -24,6 +24,15 @@ export interface user {
   deletedAt: any;
   createdAt: string;
   updatedAt: string;
+  distributorManager: {
+    id: string;
+    user_id: string;
+    distributor_id: string;
+    distributor: {
+      id: string;
+      company_name: string;
+    };
+  };
 }
 
 type UserStatus = "ACTIVE" | "BLOCK" | "DELETED";

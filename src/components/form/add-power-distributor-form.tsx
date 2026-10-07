@@ -5,8 +5,12 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useAddDistributorCompany } from "@/hooks";
+import { PowerDistributorFormProps } from "@/types";
 
-const AddPowerDistributorForm = ({ setOpen, DistributorRefetchForAdmin }) => {
+const AddPowerDistributorForm = ({
+  setOpen,
+  DistributorRefetchForAdmin,
+}: PowerDistributorFormProps) => {
   const handleDrawer = async () => {
     await DistributorRefetchForAdmin();
     setOpen(false);
