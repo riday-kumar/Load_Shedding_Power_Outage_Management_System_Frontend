@@ -185,7 +185,7 @@ const ProfileUpdate = () => {
             />
 
             {/* =========== feederId ========= */}
-            <p>Please Select Your Area</p>
+            <p className="font-bold">Choose Your Feeder Area</p>
             <form.Field name="feederId">
               {(field) => (
                 <SearchFeeders

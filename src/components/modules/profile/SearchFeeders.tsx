@@ -21,12 +21,12 @@ const SearchFeeders = ({
 }) => {
   const [searchArea, setSearchArea] = useState("");
 
-  const { data: feederData, isLoading: feederDataLoading } = useAllFeeders(
-    searchArea,
-    "",
-  );
+  const { data: feederData, isLoading: feederDataLoading } = useAllFeeders({
+    area: searchArea,
+    limit: "3",
+  });
 
-  console.log("feederData", feederData);
+  // console.log("feederData", feederData);
   const debouncedSearch = useDebouncedCallback((value: string) => {
     setSearchArea(value);
   }, 500);
@@ -47,7 +47,7 @@ const SearchFeeders = ({
         />
       </div>
       {feederData &&
-        feederData?.data.map((feeder: IFeeder) => (
+        feederData?.data.data.map((feeder: IFeeder) => (
           <Button
             key={feeder.id}
             onClick={() => {

@@ -3,6 +3,7 @@ import {
   updateProfile,
   uploadProfilePhoto,
 } from "@/api/profile.api";
+import { GetAllFeeders } from "@/types/manager.type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useProfileUpdate = () => {
@@ -11,10 +12,10 @@ export const useProfileUpdate = () => {
   });
 };
 
-export const useAllFeeders = (payload: string, managerId: string) => {
+export const useAllFeeders = (payload: GetAllFeeders) => {
   return useQuery({
     queryKey: ["area-feeder", payload],
-    queryFn: () => getAllFeeders(payload, managerId),
+    queryFn: () => getAllFeeders(payload),
   });
 };
 

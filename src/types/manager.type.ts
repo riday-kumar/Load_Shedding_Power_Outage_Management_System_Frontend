@@ -47,6 +47,13 @@ export interface PowerOperator {
   };
 }
 
+export interface GetAllFeeders {
+  area?: string;
+  creator?: string;
+  page?: string;
+  limit?: string;
+}
+
 export interface FeederInfo {
   id: string;
   feeder_name: string;

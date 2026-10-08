@@ -1,5 +1,6 @@
 import apiClient from "@/lib/apiClient";
 import { ProfileUpdatePayload } from "@/types";
+import { GetAllFeeders } from "@/types/manager.type";
 
 export const updateProfile = async (payload: ProfileUpdatePayload) => {
   return await apiClient("/user/profile-update", {
@@ -8,10 +9,15 @@ export const updateProfile = async (payload: ProfileUpdatePayload) => {
   });
 };
 
-export const getAllFeeders = async (payload: string, id: string) => {
-  return await apiClient(
-    `/distributor-manager/feeder?area=${payload}&creator=${id}`,
-  );
+export const getAllFeeders = async (payload: GetAllFeeders) => {
+  return await apiClient("/distributor-manager/feeder", {
+    query: {
+      area: payload.area ?? undefined,
+      creator: payload.creator ?? undefined,
+      page: payload.page ?? undefined,
+      limit: payload.limit ?? undefined,
+    },
+  });
 };
 
 export const uploadProfilePhoto = async (formData: FormData) => {
