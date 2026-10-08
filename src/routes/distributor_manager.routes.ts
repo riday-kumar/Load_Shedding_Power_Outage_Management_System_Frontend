@@ -17,8 +17,8 @@ export const distributorManagersRoutes = {
       url: "#",
       items: [
         {
-          title: "Power Authority",
-          url: "/dashboard/power-authority",
+          title: "Substation",
+          url: "/dashboard/manager/substation",
         },
       ],
     },
