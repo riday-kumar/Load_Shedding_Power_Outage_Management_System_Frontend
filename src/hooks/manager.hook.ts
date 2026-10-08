@@ -1,9 +1,11 @@
 import {
   addNewFeeder,
+  addNewTechnician,
   addPowerOperator,
   addSubstation,
   getPowerOperatorOfManager,
   getSubstationOfManager,
+  getTechnicians,
   updateFeeder,
   updateSubstation,
 } from "@/api";
@@ -50,5 +52,18 @@ export const useAddFeeder = () => {
 export const useUpdateFeeder = () => {
   return useMutation({
     mutationFn: updateFeeder,
+  });
+};
+
+export const useGetTechnicians = (managerId: string, substationId: string) => {
+  return useQuery({
+    queryKey: ["technicians", managerId, substationId],
+    queryFn: () => getTechnicians(managerId, substationId),
+  });
+};
+
+export const useAddTechnician = () => {
+  return useMutation({
+    mutationFn: addNewTechnician,
   });
 };

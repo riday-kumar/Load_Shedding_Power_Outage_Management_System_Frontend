@@ -83,3 +83,34 @@ export interface FeederUpdatePayload {
   area: string;
   substation_id: string;
 }
+
+export interface Technician {
+  id: string;
+  status: string;
+  skill: string;
+  user_id: string;
+  createdBy: string;
+  substationId: string;
+  users: {
+    name: string;
+    email: string;
+    phone: string | null;
+  };
+  substation: {
+    station_name: string;
+  };
+}
+
+export interface TechnicianFormProps {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  techniciansRefetch: () => Promise<unknown>;
+}
+
+export interface TechnicianAddPayload {
+  name: string;
+  email: string;
+  password: string;
+  address: string;
+  skill: string;
+  substationId: string;
+}

@@ -102,6 +102,12 @@ export default function ProfilePage() {
                     Email verified
                   </Badge>
                 )}
+                {user.distributorManager.distributor.company_name && (
+                  <Badge variant="outline">
+                    <ShieldCheck className="size-3" />
+                    {user.distributorManager.distributor.company_name}
+                  </Badge>
+                )}
               </div>
             </div>
           </div>
