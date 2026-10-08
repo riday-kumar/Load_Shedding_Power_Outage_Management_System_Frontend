@@ -145,7 +145,16 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
                   <SidebarMenuSub>
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton render={<a href={item.url} />}>
+                        <SidebarMenuSubButton
+                          isActive={pathName === item.url}
+                          render={<a href={item.url} />}
+                          className="
+                           hover:bg-red-600
+                            hover:text-primary-foreground
+                            data-active:bg-primary 
+                            data-active:text-primary-foreground
+                          "
+                        >
                           {item.title}
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>

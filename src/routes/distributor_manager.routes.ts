@@ -28,6 +28,10 @@ export const distributorManagersRoutes = {
           title: "Feeders",
           url: "/dashboard/manager/feeders",
         },
+        {
+          title: "Technician",
+          url: "/dashboard/manager/technician",
+        },
       ],
     },
   ],
