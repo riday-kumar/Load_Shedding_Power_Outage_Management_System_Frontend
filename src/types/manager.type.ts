@@ -13,3 +13,22 @@ export interface SubstationAddFormProps {
   managerSubstationRefetch: () => Promise<unknown>;
   substation?: Substation | null;
 }
+
+export interface UpdateSubstationPayload {
+  substationId: string;
+  station_name: string;
+  distributor_id: string;
+}
+
+export interface CreatePowerOperatorPayload {
+  name: string;
+  email: string;
+  address: string;
+  password: string;
+  substation_id: string;
+}
+
+export interface PowerOperatorFormProps {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  managerPowerOperatorRefetch: () => Promise<unknown>;
+}

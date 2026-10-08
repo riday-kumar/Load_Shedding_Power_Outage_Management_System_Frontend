@@ -20,6 +20,10 @@ export const distributorManagersRoutes = {
           title: "Substation",
           url: "/dashboard/manager/substation",
         },
+        {
+          title: "Power Operator",
+          url: "/dashboard/manager/power-operator",
+        },
       ],
     },
   ],
