@@ -39,8 +39,10 @@ const TechnicianOfManager = () => {
     data: techniciansData,
     isLoading: techniciansLoading,
     refetch: techniciansRefetch,
-  } = useGetTechnicians(user.distributorManager.id, "");
-  console.log("technicians data", techniciansData);
+  } = useGetTechnicians({
+    managerId: user.distributorManager.id,
+  });
+  // console.log("technicians data", techniciansData);
 
   const isLoading = userProfileLoading || techniciansLoading;
   if (isLoading) {

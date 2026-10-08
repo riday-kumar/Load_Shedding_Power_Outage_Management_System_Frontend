@@ -3,6 +3,7 @@ import {
   CreatePowerOperatorPayload,
   FeederAddPayload,
   FeederUpdatePayload,
+  GetTechnicianPayload,
   TechnicianAddPayload,
   UpdateSubstationPayload,
 } from "@/types/manager.type";
@@ -57,13 +58,13 @@ export const updateFeeder = async (payload: FeederUpdatePayload) => {
   });
 };
 
-export const getTechnicians = async (
-  managerId: string,
-  substationId: string,
-) => {
-  return await apiClient(
-    `/distributor-manager/technician?managerId=${managerId}&substationId=${substationId}`,
-  );
+export const getTechnicians = async (payload: GetTechnicianPayload) => {
+  return await apiClient("/distributor-manager/technician", {
+    query: {
+      managerId: payload.managerId || undefined,
+      substationId: payload.substationId || undefined,
+    },
+  });
 };
 
 export const addNewTechnician = async (payload: TechnicianAddPayload) => {

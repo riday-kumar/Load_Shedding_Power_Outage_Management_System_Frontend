@@ -9,6 +9,7 @@ import {
   updateFeeder,
   updateSubstation,
 } from "@/api";
+import { GetTechnicianPayload } from "@/types/manager.type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useSubstationOfManager = () => {
@@ -55,10 +56,10 @@ export const useUpdateFeeder = () => {
   });
 };
 
-export const useGetTechnicians = (managerId: string, substationId: string) => {
+export const useGetTechnicians = (payload: GetTechnicianPayload) => {
   return useQuery({
-    queryKey: ["technicians", managerId, substationId],
-    queryFn: () => getTechnicians(managerId, substationId),
+    queryKey: ["technicians", payload],
+    queryFn: () => getTechnicians(payload),
   });
 };
 

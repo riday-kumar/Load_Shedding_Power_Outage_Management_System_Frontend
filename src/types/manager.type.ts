@@ -91,6 +91,11 @@ export interface FeederUpdatePayload {
   substation_id: string;
 }
 
+export interface GetTechnicianPayload {
+  managerId?: string;
+  substationId?: string;
+}
+
 export interface Technician {
   id: string;
   status: string;
