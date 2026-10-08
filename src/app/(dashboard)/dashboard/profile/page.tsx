@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useUserProfile } from "@/hooks";
-import { User } from "@/types";
+import { user } from "@/types";
 import AuthLoading from "@/components/auth/auth-loading";
 import ProfileUpdate from "@/components/modules/profile/ProfileUpdate";
 
@@ -53,7 +53,7 @@ function InfoRow({
 export default function ProfilePage() {
   const { data, isLoading } = useUserProfile();
 
-  const user: User = data.data;
+  const user: user = data.data;
   console.log("user", user);
   const isCustomer = user.role === "CUSTOMER";
 

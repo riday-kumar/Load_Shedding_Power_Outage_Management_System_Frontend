@@ -1,6 +1,8 @@
 import apiClient from "@/lib/apiClient";
 import {
   CreatePowerOperatorPayload,
+  FeederAddPayload,
+  FeederUpdatePayload,
   UpdateSubstationPayload,
 } from "@/types/manager.type";
 
@@ -36,6 +38,20 @@ export const getPowerOperatorOfManager = async () => {
 export const addPowerOperator = async (payload: CreatePowerOperatorPayload) => {
   return await apiClient("/distributor-manager/power-operator", {
     method: "POST",
+    body: payload,
+  });
+};
+
+export const addNewFeeder = async (payload: FeederAddPayload) => {
+  return await apiClient("/distributor-manager/feeder", {
+    method: "POST",
+    body: payload,
+  });
+};
+
+export const updateFeeder = async (payload: FeederUpdatePayload) => {
+  return await apiClient(`/distributor-manager/feeder`, {
+    method: "PATCH",
     body: payload,
   });
 };

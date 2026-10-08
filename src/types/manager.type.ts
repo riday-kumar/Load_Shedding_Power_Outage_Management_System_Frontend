@@ -32,3 +32,54 @@ export interface PowerOperatorFormProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   managerPowerOperatorRefetch: () => Promise<unknown>;
 }
+
+export interface PowerOperator {
+  id: string;
+  substation_id: string;
+  createdById: string;
+  user_id: string;
+  substation: Substation;
+  user: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+  };
+}
+
+export interface FeederInfo {
+  id: string;
+  feeder_name: string;
+  division: string;
+  district: string;
+  area: string;
+  substation_id: string;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+  substation: {
+    station_name: string;
+  };
+}
+
+export interface FeederAddFormProps {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  feederRefetch: () => Promise<unknown>;
+  feeder?: FeederInfo | null;
+}
+
+export interface FeederAddPayload {
+  feeder_name: string;
+  division?: string;
+  district?: string;
+  area: string;
+  substation_id: string;
+}
+export interface FeederUpdatePayload {
+  id: string;
+  feeder_name: string;
+  division?: string;
+  district?: string;
+  area: string;
+  substation_id: string;
+}

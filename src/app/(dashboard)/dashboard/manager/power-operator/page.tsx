@@ -23,24 +23,10 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { usePowerOperatorOfManager } from "@/hooks";
-import { Substation } from "@/types/manager.type";
+import { PowerOperator, Substation } from "@/types/manager.type";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import PowerOperatorForm from "@/components/form/PowerOperatorForm";
-
-interface PowerOperator {
-  id: string;
-  substation_id: string;
-  createdById: string;
-  user_id: string;
-  substation: Substation;
-  user: {
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-  };
-}
 
 const PowerOperatorForManager = () => {
   const [open, setOpen] = useState(false);

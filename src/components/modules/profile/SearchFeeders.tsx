@@ -21,8 +21,10 @@ const SearchFeeders = ({
 }) => {
   const [searchArea, setSearchArea] = useState("");
 
-  const { data: feederData, isLoading: feederDataLoading } =
-    useAllFeeders(searchArea);
+  const { data: feederData, isLoading: feederDataLoading } = useAllFeeders(
+    searchArea,
+    "",
+  );
 
   console.log("feederData", feederData);
   const debouncedSearch = useDebouncedCallback((value: string) => {

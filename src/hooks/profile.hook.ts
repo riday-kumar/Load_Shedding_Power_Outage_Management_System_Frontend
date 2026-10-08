@@ -11,10 +11,10 @@ export const useProfileUpdate = () => {
   });
 };
 
-export const useAllFeeders = (payload: string) => {
+export const useAllFeeders = (payload: string, managerId: string) => {
   return useQuery({
     queryKey: ["area-feeder", payload],
-    queryFn: () => getAllFeeders(payload),
+    queryFn: () => getAllFeeders(payload, managerId),
   });
 };
 

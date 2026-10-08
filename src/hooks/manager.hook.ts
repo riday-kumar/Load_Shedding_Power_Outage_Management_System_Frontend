@@ -1,8 +1,10 @@
 import {
+  addNewFeeder,
   addPowerOperator,
   addSubstation,
   getPowerOperatorOfManager,
   getSubstationOfManager,
+  updateFeeder,
   updateSubstation,
 } from "@/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -36,5 +38,17 @@ export const usePowerOperatorOfManager = () => {
 export const useAddPowerOperator = () => {
   return useMutation({
     mutationFn: addPowerOperator,
+  });
+};
+
+export const useAddFeeder = () => {
+  return useMutation({
+    mutationFn: addNewFeeder,
+  });
+};
+
+export const useUpdateFeeder = () => {
+  return useMutation({
+    mutationFn: updateFeeder,
   });
 };

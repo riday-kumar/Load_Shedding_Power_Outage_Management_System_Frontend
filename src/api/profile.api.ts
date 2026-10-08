@@ -8,8 +8,10 @@ export const updateProfile = async (payload: ProfileUpdatePayload) => {
   });
 };
 
-export const getAllFeeders = async (payload: string) => {
-  return await apiClient(`/distributor-manager/feeder?area=${payload}`);
+export const getAllFeeders = async (payload: string, id: string) => {
+  return await apiClient(
+    `/distributor-manager/feeder?area=${payload}&creator=${id}`,
+  );
 };
 
 export const uploadProfilePhoto = async (formData: FormData) => {
