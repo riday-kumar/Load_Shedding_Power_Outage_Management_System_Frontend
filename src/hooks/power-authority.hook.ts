@@ -1,4 +1,8 @@
-import { addPowerStatus, getPowerStatusInfo } from "@/api";
+import {
+  addPowerStatus,
+  createPowerDistribution,
+  getPowerStatusInfo,
+} from "@/api";
 import { GetPowerStatus } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -12,5 +16,11 @@ export const useGetPowerStatusInfo = (payload: GetPowerStatus) => {
 export const useAddPowerStatus = () => {
   return useMutation({
     mutationFn: addPowerStatus,
+  });
+};
+
+export const useAddPowerDistribution = () => {
+  return useMutation({
+    mutationFn: createPowerDistribution,
   });
 };

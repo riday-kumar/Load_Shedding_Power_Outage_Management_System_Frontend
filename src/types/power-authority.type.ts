@@ -18,3 +18,17 @@ export interface PowerStatusFormProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   powerStatusInfoRefetch: UseQueryResult["refetch"];
 }
+
+export interface PowerDistribution {
+  expected_need: number;
+  allocated: number;
+  distributor_id: string;
+}
+
+export type PowerDistributionForm = {
+  distributions: {
+    expected_need: number;
+    allocated: number;
+    distributor_id: string;
+  }[];
+};

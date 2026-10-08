@@ -18,7 +18,11 @@ export const powerAuthorityRoutes = {
       items: [
         {
           title: "Power Authority",
-          url: "/dashboard/power-authority",
+          url: "/dashboard/power-auth",
+        },
+        {
+          title: "Power Distribute",
+          url: "/dashboard/power-auth/power-distribute",
         },
       ],
     },
