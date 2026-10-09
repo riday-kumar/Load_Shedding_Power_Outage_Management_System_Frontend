@@ -45,6 +45,6 @@ export interface PowerDistributionDataInfo {
 }
 
 export interface GetAllPowerDistributedDataPayload {
-  today?: string;
+  today?: Date | string;
   companyId?: string;
 }
