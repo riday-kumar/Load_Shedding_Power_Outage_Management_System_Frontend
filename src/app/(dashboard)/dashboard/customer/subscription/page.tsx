@@ -231,7 +231,7 @@ export default function SubscriptionPage() {
               </div>
 
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="text-4xl font-bold">৳99</span>
+                <span className="text-4xl font-bold">৳100</span>
                 <span className="text-sm text-blue-100">/ month</span>
               </div>
 

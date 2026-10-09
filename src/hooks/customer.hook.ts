@@ -1,4 +1,5 @@
 import {
+  createComplaint,
   createSubscription,
   getSubscriptions,
   payForSubscriptions,
@@ -21,5 +22,11 @@ export const useGetSubscriptions = () => {
 export const usePayForSubscription = () => {
   return useMutation({
     mutationFn: payForSubscriptions,
+  });
+};
+
+export const useCreateComplaint = () => {
+  return useMutation({
+    mutationFn: createComplaint,
   });
 };

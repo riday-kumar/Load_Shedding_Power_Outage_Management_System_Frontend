@@ -28,6 +28,10 @@ export const customerRoutes = {
           title: "All Subscription",
           url: "/dashboard/customer/subscription/all-subscription",
         },
+        {
+          title: "Create Complaint",
+          url: "/dashboard/customer/complaint",
+        },
       ],
     },
   ],

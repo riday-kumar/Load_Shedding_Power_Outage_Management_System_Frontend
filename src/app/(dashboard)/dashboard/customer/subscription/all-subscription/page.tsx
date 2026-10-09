@@ -41,7 +41,7 @@ const MyCreatedSubscription = () => {
     );
   };
 
-  if (isLoadingSubscriptions) {
+  if (isLoadingSubscriptions || paymentLoading) {
     return <AuthLoading />;
   }
 
@@ -78,12 +78,7 @@ const MyCreatedSubscription = () => {
               </TableCell>
 
               <TableCell>
-                <Button
-                  onClick={() => handlePay(info.id)}
-                  disabled={paymentLoading}
-                >
-                  {paymentLoading ? "Processing" : "Pay Now"}
-                </Button>
+                <Button onClick={() => handlePay(info.id)}>Pay Now</Button>
                 {/* <Button>Pay Now</Button> */}
               </TableCell>
             </TableRow>

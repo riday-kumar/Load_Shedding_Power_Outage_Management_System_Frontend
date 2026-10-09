@@ -18,3 +18,13 @@ export const payForSubscriptions = async (payload: {
     body: payload,
   });
 };
+
+export const createComplaint = async (payload: {
+  complaintMessage: string;
+  feeder_id: string;
+}) => {
+  return await apiClient("/complaint", {
+    method: "POST",
+    body: payload,
+  });
+};
