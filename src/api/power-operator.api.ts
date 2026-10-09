@@ -36,3 +36,7 @@ export const publishSchedule = async (id: string) => {
     method: "PATCH",
   });
 };
+
+export const allEmergencyOutagesForPowerOperator = async () => {
+  return await apiClient("/emergency-outage");
+};

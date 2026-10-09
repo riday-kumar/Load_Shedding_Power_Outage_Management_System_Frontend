@@ -44,3 +44,17 @@ export interface LoadShedding {
     user_id: string;
   };
 }
+
+export interface EmergencyOutage {
+  id: string;
+  feeder_id: string;
+  reporter_id: string;
+  reportedAt: string;
+  reason: string;
+  startedAt: string;
+  resolvedAt: string;
+  status: string;
+  damage: string;
+  updatedAt: string;
+  feeders: FeederInfo;
+}

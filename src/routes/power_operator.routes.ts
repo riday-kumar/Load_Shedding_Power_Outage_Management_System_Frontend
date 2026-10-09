@@ -35,6 +35,10 @@ export const powerOperatorRoutes = {
           title: "Published Load Shedding",
           url: "/dashboard/power-operator/loadshedding/published",
         },
+        {
+          title: "Emergency Outage",
+          url: "/dashboard/power-operator/emergency-outage",
+        },
       ],
     },
   ],

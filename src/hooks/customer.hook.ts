@@ -1,5 +1,6 @@
 import {
   createComplaint,
+  createEmergencyOutage,
   createSubscription,
   getSubscriptions,
   payForSubscriptions,
@@ -28,5 +29,11 @@ export const usePayForSubscription = () => {
 export const useCreateComplaint = () => {
   return useMutation({
     mutationFn: createComplaint,
+  });
+};
+
+export const useCreateEmergencyOutage = () => {
+  return useMutation({
+    mutationFn: createEmergencyOutage,
   });
 };

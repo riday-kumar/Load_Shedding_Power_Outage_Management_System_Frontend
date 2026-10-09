@@ -19,7 +19,7 @@ const CreateComplaint = () => {
 
   const { data: userProfile, isLoading: LoadingUserProfile } = useUserProfile();
 
-  const user: user = userProfile?.data || {};
+  const user: user = userProfile?.data;
   const { mutate: createComplaint, isPending: LoadingCreateComplaint } =
     useCreateComplaint();
 

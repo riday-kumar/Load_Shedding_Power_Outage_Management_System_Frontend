@@ -29,6 +29,10 @@ export const customerRoutes = {
           url: "/dashboard/customer/subscription/all-subscription",
         },
         {
+          title: "Emergency Outage",
+          url: "/dashboard/customer/emergency-outage",
+        },
+        {
           title: "Create Complaint",
           url: "/dashboard/customer/complaint",
         },

@@ -1,4 +1,5 @@
 import {
+  allEmergencyOutagesForPowerOperator,
   allFeedersForPowerOperator,
   allLoadSheddingSchedule,
   createLoadShedding,
@@ -37,5 +38,12 @@ export const usePublishSchedule = () => {
         queryKey: ["allLoadShedding"],
       });
     },
+  });
+};
+
+export const useAllEmergencyOutagesForPowerOperator = () => {
+  return useQuery({
+    queryKey: ["allEmergencyOutagesForPowerOperator"],
+    queryFn: allEmergencyOutagesForPowerOperator,
   });
 };

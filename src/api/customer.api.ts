@@ -28,3 +28,14 @@ export const createComplaint = async (payload: {
     body: payload,
   });
 };
+
+export const createEmergencyOutage = async (payload: {
+  feeder_id: string;
+  reason: string;
+  startedAt: string;
+}) => {
+  return await apiClient("/emergency-outage", {
+    method: "POST",
+    body: payload,
+  });
+};
