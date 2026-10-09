@@ -126,3 +126,29 @@ export interface TechnicianAddPayload {
   skill: string;
   substationId: string;
 }
+
+export interface PowerDistributionInSubstation {
+  expected_need: number;
+  allocated: number;
+  distributor_id: string;
+}
+
+export type DistributionField = {
+  substation_id: string;
+  expectedNeed: string;
+  allocatedNeed: string;
+};
+export type PowerDistributionFormValues = {
+  distributions: DistributionField[];
+};
+
+export type AddPowerDistributionPayload = {
+  substation_id: string;
+  expectedNeed: number;
+  allocatedNeed: number;
+};
+
+export type AddPowerDistributionVariables = {
+  companyId: string;
+  payload: AddPowerDistributionPayload[];
+};

@@ -17,6 +17,14 @@ export const distributorManagersRoutes = {
       url: "#",
       items: [
         {
+          title: "Substation Power Delivery",
+          url: "/dashboard/manager/supply/substation",
+        },
+        {
+          title: "Power Delivery Record",
+          url: "/dashboard/manager/supply/record",
+        },
+        {
           title: "Substation",
           url: "/dashboard/manager/substation",
         },

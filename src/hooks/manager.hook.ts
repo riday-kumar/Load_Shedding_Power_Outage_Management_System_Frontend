@@ -1,6 +1,7 @@
 import {
   addNewFeeder,
   addNewTechnician,
+  addPowerDistributionInSubstation,
   addPowerOperator,
   addSubstation,
   getPowerOperatorOfManager,
@@ -9,7 +10,11 @@ import {
   updateFeeder,
   updateSubstation,
 } from "@/api";
-import { GetTechnicianPayload } from "@/types/manager.type";
+import {
+  AddPowerDistributionVariables,
+  GetTechnicianPayload,
+  PowerDistributionInSubstation,
+} from "@/types/manager.type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useSubstationOfManager = () => {
@@ -66,5 +71,12 @@ export const useGetTechnicians = (payload: GetTechnicianPayload) => {
 export const useAddTechnician = () => {
   return useMutation({
     mutationFn: addNewTechnician,
+  });
+};
+
+export const useAddPowerDistributionInSubstation = () => {
+  return useMutation({
+    mutationFn: ({ companyId, payload }: AddPowerDistributionVariables) =>
+      addPowerDistributionInSubstation(companyId, payload),
   });
 };

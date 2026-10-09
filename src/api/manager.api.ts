@@ -1,9 +1,11 @@
 import apiClient from "@/lib/apiClient";
 import {
+  AddPowerDistributionPayload,
   CreatePowerOperatorPayload,
   FeederAddPayload,
   FeederUpdatePayload,
   GetTechnicianPayload,
+  PowerDistributionInSubstation,
   TechnicianAddPayload,
   UpdateSubstationPayload,
 } from "@/types/manager.type";
@@ -72,4 +74,20 @@ export const addNewTechnician = async (payload: TechnicianAddPayload) => {
     method: "POST",
     body: payload,
   });
+};
+
+export const addPowerDistributionInSubstation = async (
+  companyId: string,
+  payload: AddPowerDistributionPayload[],
+) => {
+  return await apiClient(
+    "/distributor-manager/power-allocate-into-substation",
+    {
+      query: {
+        distributor_company_id: companyId,
+      },
+      method: "POST",
+      body: payload,
+    },
+  );
 };
