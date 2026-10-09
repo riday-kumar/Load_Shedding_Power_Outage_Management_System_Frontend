@@ -40,6 +40,10 @@ export const distributorManagersRoutes = {
           title: "Technician",
           url: "/dashboard/manager/technician",
         },
+        {
+          title: "Pending LoadShedding",
+          url: "/dashboard/manager/load-shedding/pending",
+        },
       ],
     },
   ],

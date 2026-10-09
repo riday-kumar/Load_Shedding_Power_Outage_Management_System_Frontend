@@ -4,9 +4,12 @@ import {
   addPowerDistributionInSubstation,
   addPowerOperator,
   addSubstation,
+  approveSchedule,
+  getLoadSheddingForManager,
   getPowerOperatorOfManager,
   getSubstationOfManager,
   getTechnicians,
+  rejectSchedule,
   updateFeeder,
   updateSubstation,
 } from "@/api";
@@ -15,7 +18,7 @@ import {
   GetTechnicianPayload,
   PowerDistributionInSubstation,
 } from "@/types/manager.type";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useSubstationOfManager = () => {
   return useQuery({
@@ -78,5 +81,38 @@ export const useAddPowerDistributionInSubstation = () => {
   return useMutation({
     mutationFn: ({ companyId, payload }: AddPowerDistributionVariables) =>
       addPowerDistributionInSubstation(companyId, payload),
+  });
+};
+
+export const useLoadSheddingForManager = () => {
+  return useQuery({
+    queryKey: ["managerLoadShedding"],
+    queryFn: getLoadSheddingForManager,
+  });
+};
+
+export const useApproveSchedule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: approveSchedule,
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["managerLoadShedding"],
+      });
+    },
+  });
+};
+
+export const useRejectSchedule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: rejectSchedule,
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["managerLoadShedding"],
+      });
+    },
   });
 };

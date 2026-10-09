@@ -91,3 +91,19 @@ export const addPowerDistributionInSubstation = async (
     },
   );
 };
+
+export const getLoadSheddingForManager = async () => {
+  return await apiClient("/load-shedding/schedule/manager");
+};
+
+export const approveSchedule = async (id: string) => {
+  return await apiClient(`/load-shedding/schedule/${id}/approve`, {
+    method: "PATCH",
+  });
+};
+
+export const rejectSchedule = async (id: string) => {
+  return await apiClient(`/load-shedding/schedule/${id}/reject`, {
+    method: "PATCH",
+  });
+};
