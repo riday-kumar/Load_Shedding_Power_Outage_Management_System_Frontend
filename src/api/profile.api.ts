@@ -26,3 +26,13 @@ export const uploadProfilePhoto = async (formData: FormData) => {
     body: formData,
   });
 };
+
+export const passwordReset = async (payload: {
+  currentPassword: string;
+  newPassword: string;
+}) => {
+  return await apiClient("/user/update-password", {
+    method: "PATCH",
+    body: payload,
+  });
+};

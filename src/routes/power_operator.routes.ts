@@ -8,6 +8,10 @@ export const powerOperatorRoutes = {
           title: "Profile",
           url: "/dashboard/profile",
         },
+        {
+          title: "Change Password",
+          url: "/dashboard/profile/change-password",
+        },
       ],
     },
     {

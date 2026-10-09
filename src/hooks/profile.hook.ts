@@ -1,5 +1,6 @@
 import {
   getAllFeeders,
+  passwordReset,
   updateProfile,
   uploadProfilePhoto,
 } from "@/api/profile.api";
@@ -22,5 +23,11 @@ export const useAllFeeders = (payload: GetAllFeeders) => {
 export const useProfilePhoto = () => {
   return useMutation({
     mutationFn: uploadProfilePhoto,
+  });
+};
+
+export const usePasswordReset = () => {
+  return useMutation({
+    mutationFn: passwordReset,
   });
 };

@@ -10,6 +10,10 @@ export const technicianRoutes = {
           title: "Profile",
           url: "/dashboard/profile",
         },
+        {
+          title: "Change Password",
+          url: "/dashboard/profile/change-password",
+        },
       ],
     },
     {
