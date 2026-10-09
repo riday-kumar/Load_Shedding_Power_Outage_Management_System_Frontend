@@ -21,8 +21,10 @@ import { DistributorCompany, PowerDistributionForm } from "@/types";
 import { FetchError } from "ofetch";
 import { toast } from "@/components/ui/toast";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const PowerDistribute = () => {
+  const router = useRouter();
   // ================= Get All Distributor Company =================
   const { data: distributorCompanyList, isLoading: LoadingDistributorCompany } =
     useAllDistributorCompanyForAdmin();
@@ -65,6 +67,7 @@ const PowerDistribute = () => {
             description: "Power Distribution Created Successfully",
             type: "success",
           });
+          router.push("/dashboard/power-auth/power-distribution-data");
         },
         onError: (err: any) => {
           let errorMsg;

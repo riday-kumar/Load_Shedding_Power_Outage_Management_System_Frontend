@@ -25,3 +25,7 @@ export const createPowerDistribution = async (payload: PowerDistribution[]) => {
     body: payload,
   });
 };
+
+export const allPowerDistributedData = async () => {
+  return await apiClient("/power-auth/power-distribution");
+};

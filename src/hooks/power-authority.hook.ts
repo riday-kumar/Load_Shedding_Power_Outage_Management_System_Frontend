@@ -1,5 +1,6 @@
 import {
   addPowerStatus,
+  allPowerDistributedData,
   createPowerDistribution,
   getPowerStatusInfo,
 } from "@/api";
@@ -22,5 +23,12 @@ export const useAddPowerStatus = () => {
 export const useAddPowerDistribution = () => {
   return useMutation({
     mutationFn: createPowerDistribution,
+  });
+};
+
+export const useAllPowerDistributionInfo = () => {
+  return useQuery({
+    queryKey: ["powerDistributionData"],
+    queryFn: () => allPowerDistributedData(),
   });
 };

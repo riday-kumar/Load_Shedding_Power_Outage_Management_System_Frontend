@@ -24,6 +24,10 @@ export const powerAuthorityRoutes = {
           title: "Power Distribute",
           url: "/dashboard/power-auth/power-distribute",
         },
+        {
+          title: "Distribution Data",
+          url: "/dashboard/power-auth/power-distribution-data",
+        },
       ],
     },
   ],

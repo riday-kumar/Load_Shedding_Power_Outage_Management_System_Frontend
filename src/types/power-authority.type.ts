@@ -32,3 +32,14 @@ export type PowerDistributionForm = {
     distributor_id: string;
   }[];
 };
+
+export interface PowerDistributionDataInfo {
+  id: string;
+  allocatedAt: string;
+  expected_need: string;
+  allocated: string;
+  distributor_id: string;
+  distributor: {
+    company_name: string;
+  };
+}
