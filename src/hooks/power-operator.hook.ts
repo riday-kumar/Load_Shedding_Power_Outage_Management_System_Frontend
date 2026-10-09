@@ -1,8 +1,11 @@
 import {
   allFeedersForPowerOperator,
+  allLoadSheddingSchedule,
   createLoadShedding,
+  publishSchedule,
 } from "@/api/power-operator.api";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { LoadSheddingGettingPayload } from "@/types/power-operator.type";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useAllFeedersForOperator = () => {
   return useQuery({
@@ -14,5 +17,25 @@ export const useAllFeedersForOperator = () => {
 export const useCreateLoadShedding = () => {
   return useMutation({
     mutationFn: createLoadShedding,
+  });
+};
+
+export const useGetAllLoadShedding = (payload: LoadSheddingGettingPayload) => {
+  return useQuery({
+    queryKey: ["allLoadShedding", payload],
+    queryFn: () => allLoadSheddingSchedule(payload),
+  });
+};
+
+export const usePublishSchedule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: publishSchedule,
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["allLoadShedding"],
+      });
+    },
   });
 };

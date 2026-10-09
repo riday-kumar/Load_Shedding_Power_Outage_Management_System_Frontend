@@ -33,6 +33,10 @@ export interface user {
       company_name: string;
     };
   };
+  powerOperators: {
+    id: string;
+    substation_id: string;
+  };
 }
 
 type UserStatus = "ACTIVE" | "BLOCK" | "DELETED";

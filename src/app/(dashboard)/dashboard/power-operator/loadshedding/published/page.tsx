@@ -31,10 +31,7 @@ import {
   useUpdateUserStatus,
   useUserProfile,
 } from "@/hooks";
-import {
-  useGetAllLoadShedding,
-  usePublishSchedule,
-} from "@/hooks/power-operator.hook";
+import { useGetAllLoadShedding } from "@/hooks/power-operator.hook";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { DistributorCompany, user, UserRole } from "@/types";
 import { LoadShedding } from "@/types/power-operator.type";
@@ -51,7 +48,7 @@ export const formatBdTimeOnly = (date: string | Date) => {
   });
 };
 
-const AllApprovedLoadShedding = () => {
+const AllPublishedLoadShedding = () => {
   // ================ user profile ==============
   const { data: userProfile, isLoading: userProfileLoading } = useUserProfile();
   const operator: user = userProfile?.data;
@@ -59,32 +56,9 @@ const AllApprovedLoadShedding = () => {
 
   // =============== get all load shedding hook ===========
   const { data: loadSheddingData, isLoading: loadSheddingDataLoading } =
-    useGetAllLoadShedding({ operator: userOperatorId, state: "APPROVED" });
+    useGetAllLoadShedding({ operator: userOperatorId, state: "PUBLISHED" });
 
-  console.log("approved loadshedding", loadSheddingData);
-
-  // ====================== publish schedule hook =============
-  const { mutate: publishScheduleMutation, isPending: publishScheduleLoading } =
-    usePublishSchedule();
-
-  const handleSchedulePublish = (id: string) => {
-    publishScheduleMutation(id, {
-      onSuccess: () => {
-        toast.add({
-          title: "Schedule Published",
-          description: "Schedule Published Successfully",
-          type: "success",
-        });
-      },
-      onError: () => {
-        toast.add({
-          title: "Schedule Publish Failed",
-          description: "Something Went Wrong. Please Try Again!",
-          type: "error",
-        });
-      },
-    });
-  };
+  //   console.log("approved loadshedding", loadSheddingData);
 
   const loading = userProfileLoading || loadSheddingDataLoading;
   if (loading) {
@@ -93,7 +67,7 @@ const AllApprovedLoadShedding = () => {
 
   return (
     <div className="space-y-4">
-      <Heading text="Approved Load Shedding Schedule" />
+      <Heading text="Published Load Shedding Schedule" />
       <div>
         {/* =============== table ============= */}
         <Table>
@@ -108,7 +82,6 @@ const AllApprovedLoadShedding = () => {
               <TableHead>Planned Load Shedding(MW)</TableHead>
               <TableHead>Feeder Name</TableHead>
               <TableHead>Feeder Area</TableHead>
-              <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -122,14 +95,6 @@ const AllApprovedLoadShedding = () => {
                 <TableCell>{info.plannedLoadShedding}</TableCell>
                 <TableCell>{info.feeders.feeder_name}</TableCell>
                 <TableCell>{info.feeders.area}</TableCell>
-                <TableCell>
-                  <Button
-                    disabled={publishScheduleLoading}
-                    onClick={() => handleSchedulePublish(info.id)}
-                  >
-                    {publishScheduleLoading ? "Publishing..." : "Publish"}
-                  </Button>
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -139,4 +104,4 @@ const AllApprovedLoadShedding = () => {
   );
 };
 
-export default AllApprovedLoadShedding;
+export default AllPublishedLoadShedding;

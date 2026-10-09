@@ -1,5 +1,3 @@
-const prefix = "/admin";
-
 export const powerOperatorRoutes = {
   navMain: [
     {
@@ -17,8 +15,21 @@ export const powerOperatorRoutes = {
       url: "#",
       items: [
         {
-          title: "Load Shedding",
+          title: "Add Load Shedding",
           url: "/dashboard/power-operator/loadshedding",
+        },
+        {
+          title: "Pending Load Shedding",
+          url: "/dashboard/power-operator/loadshedding/pending",
+        },
+        {
+          title: "Approved Load Shedding",
+          url: "/dashboard/power-operator/loadshedding/approved",
+        },
+
+        {
+          title: "Published Load Shedding",
+          url: "/dashboard/power-operator/loadshedding/published",
         },
       ],
     },
