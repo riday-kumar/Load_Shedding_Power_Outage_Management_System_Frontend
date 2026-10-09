@@ -21,8 +21,12 @@ export const customerRoutes = {
       url: "#",
       items: [
         {
-          title: "Power Authority",
-          url: "/dashboard/power-authority",
+          title: "Take Subscription",
+          url: "/dashboard/customer/subscription",
+        },
+        {
+          title: "All Subscription",
+          url: "/dashboard/customer/subscription/all-subscription",
         },
       ],
     },

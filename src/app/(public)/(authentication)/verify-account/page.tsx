@@ -76,6 +76,7 @@ const VerifyEmail = () => {
       otp,
       email,
     };
+    console.log(verifyData);
 
     verify(verifyData, {
       onSuccess: (res) => {
