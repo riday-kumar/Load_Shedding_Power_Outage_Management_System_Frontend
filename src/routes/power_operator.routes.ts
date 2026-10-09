@@ -17,12 +17,8 @@ export const powerOperatorRoutes = {
       url: "#",
       items: [
         {
-          title: "Power Authority",
-          url: "/dashboard/power-authority",
-        },
-        {
           title: "Load Shedding",
-          url: "/dashboard/power-authority",
+          url: "/dashboard/power-operator/loadshedding",
         },
       ],
     },
