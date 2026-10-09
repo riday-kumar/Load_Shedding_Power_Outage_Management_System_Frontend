@@ -4,7 +4,7 @@ import {
   createPowerDistribution,
   getPowerStatusInfo,
 } from "@/api";
-import { GetPowerStatus } from "@/types";
+import { GetAllPowerDistributedDataPayload, GetPowerStatus } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetPowerStatusInfo = (payload: GetPowerStatus) => {
@@ -26,9 +26,11 @@ export const useAddPowerDistribution = () => {
   });
 };
 
-export const useAllPowerDistributionInfo = () => {
+export const useAllPowerDistributionInfo = (
+  payload: GetAllPowerDistributedDataPayload,
+) => {
   return useQuery({
-    queryKey: ["powerDistributionData"],
-    queryFn: () => allPowerDistributedData(),
+    queryKey: ["powerDistributionData", payload],
+    queryFn: () => allPowerDistributedData(payload),
   });
 };

@@ -1,5 +1,9 @@
 import apiClient from "@/lib/apiClient";
-import { GetPowerStatus, PowerDistribution } from "@/types";
+import {
+  GetAllPowerDistributedDataPayload,
+  GetPowerStatus,
+  PowerDistribution,
+} from "@/types";
 
 export const getPowerStatusInfo = async (payload: GetPowerStatus) => {
   return await apiClient("power-auth/national-level-electricity", {
@@ -26,6 +30,13 @@ export const createPowerDistribution = async (payload: PowerDistribution[]) => {
   });
 };
 
-export const allPowerDistributedData = async () => {
-  return await apiClient("/power-auth/power-distribution");
+export const allPowerDistributedData = async (
+  payload: GetAllPowerDistributedDataPayload,
+) => {
+  return await apiClient("/power-auth/power-distribution", {
+    query: {
+      today: payload.today || undefined,
+      companyId: payload.companyId || undefined,
+    },
+  });
 };

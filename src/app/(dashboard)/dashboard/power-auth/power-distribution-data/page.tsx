@@ -16,7 +16,7 @@ const PowerDistributionData = () => {
   const {
     data: powerDistributionData,
     isLoading: LoadingPowerDistributionData,
-  } = useAllPowerDistributionInfo();
+  } = useAllPowerDistributionInfo({});
 
   if (LoadingPowerDistributionData) {
     return <AuthLoading />;

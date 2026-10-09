@@ -43,3 +43,8 @@ export interface PowerDistributionDataInfo {
     company_name: string;
   };
 }
+
+export interface GetAllPowerDistributedDataPayload {
+  today?: string;
+  companyId?: string;
+}
