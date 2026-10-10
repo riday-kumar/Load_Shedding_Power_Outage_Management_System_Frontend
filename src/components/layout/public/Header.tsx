@@ -1,5 +1,6 @@
 "use client";
 import Logo from "@/assets/svg/Logo";
+import AuthLoading from "@/components/auth/auth-loading";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -20,8 +21,14 @@ import { useState } from "react";
 const Header = () => {
   const router = useRouter();
   const { data, isLoading } = useUserProfile();
-  // console.log("profile data", data);
-  const user: user = data?.data || [];
+  // console.log({
+  //   data,
+  //   isLoading,
+  //   isError,
+  //   error,
+  //   status,
+  // });
+  const user: user = data?.data;
   const { mutate: logOut } = useLogout();
   const [open, setOpen] = useState(false);
 
@@ -133,6 +140,10 @@ const Header = () => {
       </>
     );
   };
+
+  // if (isLoading) {
+  //   return <AuthLoading />;
+  // }
 
   return (
     <div className="z-50 sticky top-0 overflow-hidden w-full h-20 bg-white shadow-xl">
