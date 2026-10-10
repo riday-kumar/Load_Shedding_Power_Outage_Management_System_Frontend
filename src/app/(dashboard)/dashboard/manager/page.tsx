@@ -1,7 +1,9 @@
+import Heading from "@/components/layout/public/Heading";
+
 const DistributorManagerDashboard = () => {
   return (
     <div>
-      <p>this is DistributorManagerDashboard</p>
+      <Heading text=" Distributor Manager Dashboard" />
     </div>
   );
 };

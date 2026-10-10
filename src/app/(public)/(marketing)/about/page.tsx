@@ -46,9 +46,9 @@ const features = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="mt-5 min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-950 text-white">
+      <section className="rounded-xl relative overflow-hidden bg-slate-950 text-white">
         <div className="absolute -right-20 -top-24 h-80 w-80 rounded-full bg-green-primary/10 blur-3xl" />
 
         <div className="container relative mx-auto grid gap-12 px-4 py-20 md:py-28 lg:grid-cols-2 lg:items-center">
@@ -92,7 +92,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur">
               <img
-                src="/images/power-grid.jpg"
+                src="/slide3.jpg"
                 alt="Electricity transmission and power infrastructure"
                 className="h-72 w-full rounded-xl object-cover sm:h-96"
               />

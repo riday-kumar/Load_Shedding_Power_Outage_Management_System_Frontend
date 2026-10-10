@@ -20,10 +20,10 @@ export const technicianRoutes = {
       title: "Management",
       url: "#",
       items: [
-        {
-          title: "Power Authority",
-          url: "/dashboard/power-authority",
-        },
+        // {
+        //   title: "Power Authority",
+        //   url: "/dashboard/power-authority",
+        // },
       ],
     },
   ],

@@ -1,7 +1,9 @@
+import Heading from "@/components/layout/public/Heading";
+
 const AdminDashboard = () => {
   return (
     <div>
-      <p>this is admin dashboard</p>
+      <Heading text="Admin Dashboard" />
     </div>
   );
 };

@@ -27,25 +27,105 @@ import { FetchError } from "ofetch";
 import { useRouter } from "next/navigation";
 import AuthLoading from "../auth/auth-loading";
 import LoginSkeleton from "../skeleton/auth/LoginSkeleton";
+import { UserRole } from "@/types";
+import { useState } from "react";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  // const [serverError, setServerError] = useState("");
   const { mutate: login, isPending: loginPending } = useLogin();
   const { data, refetch, isLoading } = useUserProfile();
 
   // console.log("login pending", loginPending);
-  console.log({
-    data,
-  });
+  // console.log({
+  //   data,
+  // });
 
   const router = useRouter();
 
-  const form = useForm({
-    defaultValues: {
+  // =============== demo credentials ==========
+  const DEMO_CREDENTIALS = {
+    ADMIN: {
+      email: "admin@gmail.com",
+      password: "A@dmin12345",
+    },
+    POWER_AUTH: {
+      email: "powerauthority@gmail.com",
+      password: "Power@Auth12345",
+    },
+    DISTRIBUTOR_MANAGER: {
+      email: "distributormanager1@gmail.com",
+      password: "Distributor@Mgr12345",
+    },
+    POWER_OPERATOR: {
       email: "poweroperator1@gmail.com",
       password: "Abcd12345",
+    },
+    CUSTOMER: {
+      email: "learnenglishmust@gmail.com",
+      password: "Custom@r123",
+    },
+    TECHNICIAN: {
+      email: "technician04@gmail.com",
+      password: "T@chnician04",
+    },
+  };
+
+  const handleDemoLogin = async (role: UserRole) => {
+    const credentials = DEMO_CREDENTIALS[role];
+
+    // setServerError("");
+
+    form.setFieldValue("email", credentials.email);
+    form.setFieldValue("password", credentials.password);
+
+    login(credentials, {
+      onSuccess: async (res) => {
+        // console.log("login res", res);
+        const profile = await refetch();
+        const role = profile.data?.data.role;
+
+        toast.add({
+          title: "Login Successful",
+          description: "Welcome Back",
+          type: "success",
+        });
+        // router.push("/");
+
+        if (role === "ADMIN") {
+          router.push("/dashboard/admin");
+        } else if (role === "POWER_AUTH") {
+          router.push("/dashboard/power-auth");
+        } else if (role === "DISTRIBUTOR_MANAGER") {
+          router.push("/dashboard/manager");
+        } else if (role === "POWER_OPERATOR") {
+          router.push("/dashboard/power-operator");
+        } else if (role === "TECHNICIAN") {
+          router.push("/dashboard/technician");
+        } else if (role === "CUSTOMER") {
+          router.push("/dashboard/customer");
+        }
+      },
+      onError: (err) => {
+        let errorMsg;
+        if (err instanceof FetchError) {
+          errorMsg = err?.data?.message;
+        }
+        toast.add({
+          title: "Login Failed",
+          description: errorMsg || "Something Went Wrong. Please Try Again!",
+          type: "error",
+        });
+      },
+    });
+  };
+
+  const form = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
     },
     validators: {
       onSubmit: LoginSchema,
@@ -150,12 +230,12 @@ export function LoginForm({
 
               <div className="flex items-center">
                 <FieldLabel htmlFor="password">Password</FieldLabel>
-                <a
+                {/* <a
                   href="#"
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                 >
                   Forgot your password?
-                </a>
+                </a> */}
               </div>
               <form.Field
                 name="password"
@@ -188,6 +268,51 @@ export function LoginForm({
             </FieldGroup>
           </form>
           <div className="mt-4 space-y-2">
+            {/* demo button */}
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                type="button"
+                onClick={() => handleDemoLogin("ADMIN")}
+                variant={"outline"}
+              >
+                Demo Admin
+              </Button>
+              <Button
+                type="button"
+                onClick={() => handleDemoLogin("POWER_AUTH")}
+                variant={"outline"}
+              >
+                Demo Power Authority
+              </Button>
+              <Button
+                type="button"
+                onClick={() => handleDemoLogin("DISTRIBUTOR_MANAGER")}
+                variant={"outline"}
+              >
+                Demo Manager
+              </Button>
+              <Button
+                type="button"
+                onClick={() => handleDemoLogin("POWER_OPERATOR")}
+                variant={"outline"}
+              >
+                Demo Operator
+              </Button>
+              <Button
+                type="button"
+                onClick={() => handleDemoLogin("CUSTOMER")}
+                variant={"outline"}
+              >
+                Demo Customer
+              </Button>
+              <Button
+                type="button"
+                onClick={() => handleDemoLogin("TECHNICIAN")}
+                variant={"outline"}
+              >
+                Demo Technician
+              </Button>
+            </div>
             <GoogleLoginComponent />
             <FieldDescription className="text-center">
               Don&apos;t have an account? <a href="/register">Sign up</a>

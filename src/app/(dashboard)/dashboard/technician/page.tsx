@@ -1,7 +1,9 @@
+import Heading from "@/components/layout/public/Heading";
+
 const TechnicianPage = () => {
   return (
     <div>
-      <p>this is Technician Page</p>
+      <Heading text="Technician Dashboard" />
     </div>
   );
 };

@@ -10,13 +10,18 @@ import {
 } from "@/components/ui/sheet";
 import { toast } from "@/components/ui/toast";
 import { useLogout, useUserProfile } from "@/hooks";
+import { user } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Header = () => {
+  const router = useRouter();
   const { data, isLoading } = useUserProfile();
+  // console.log("profile data", data);
+  const user: user = data?.data || [];
   const { mutate: logOut } = useLogout();
   const [open, setOpen] = useState(false);
 
@@ -44,6 +49,25 @@ const Header = () => {
         });
       },
     });
+  };
+
+  const role = user?.role;
+  const handleDashboardRoute = () => {
+    if (role === "ADMIN") {
+      router.push("/dashboard/admin");
+    } else if (role === "POWER_AUTH") {
+      router.push("/dashboard/power-auth");
+    } else if (role === "DISTRIBUTOR_MANAGER") {
+      router.push("/dashboard/manager");
+    } else if (role === "POWER_OPERATOR") {
+      router.push("/dashboard/power-operator");
+    } else if (role === "TECHNICIAN") {
+      router.push("/dashboard/technician");
+    } else if (role === "CUSTOMER") {
+      router.push("/dashboard/customer");
+    } else {
+      router.push("/");
+    }
   };
 
   const routes = [
@@ -88,15 +112,25 @@ const Header = () => {
     }
 
     return (
-      <Button
-        onClick={() => {
-          handleLogout();
-          close();
-        }}
-        className="bg-red-primary text-white"
-      >
-        Logout
-      </Button>
+      <>
+        <Button
+          onClick={() => {
+            handleLogout();
+            close();
+          }}
+          className="bg-red-primary text-white"
+        >
+          Logout
+        </Button>
+        <Button
+          onClick={() => {
+            handleDashboardRoute();
+          }}
+          className="bg-green-primary text-white"
+        >
+          Dashboard
+        </Button>
+      </>
     );
   };
 

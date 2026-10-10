@@ -1,9 +1,10 @@
+import Heading from "@/components/layout/public/Heading";
 import React from "react";
 
 const CustomerDashboard = () => {
   return (
     <div>
-      <p>this is CustomerDashboard page</p>
+      <Heading text="Customer Dashboard" />
     </div>
   );
 };
