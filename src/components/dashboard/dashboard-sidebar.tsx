@@ -112,7 +112,7 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg">
-              <Logo textSize={20} />
+              <Logo textClassName="lg:text-xl" />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -12,6 +12,7 @@ import {
 
 import { Progress } from "@/components/ui/progress";
 import { useGetPowerStatusInfo } from "@/hooks";
+import PowerOverviewSkeleton from "@/components/skeleton/home/PowerOverViewSkeleton";
 
 const distributors = [
   {
@@ -69,7 +70,7 @@ const Companies = () => {
   const demandGap = Math.max(todayDemand - generatedPower, 0);
 
   if (loadingPowerStatus) {
-    return <div>Loading...</div>;
+    return <PowerOverviewSkeleton />;
   }
 
   return (

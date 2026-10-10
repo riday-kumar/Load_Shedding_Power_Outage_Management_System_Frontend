@@ -16,6 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const notices = [
   {
@@ -54,7 +55,7 @@ const jobs = [
     department: "BPDB",
     type: "Engineering",
     deadline: "30 Oct 2026",
-    status: "Example",
+    status: "Open",
   },
   {
     id: 2,
@@ -62,7 +63,7 @@ const jobs = [
     department: "DESCO",
     type: "Technical",
     deadline: "05 Nov 2026",
-    status: "Example",
+    status: "Open",
   },
   {
     id: 3,
@@ -70,7 +71,7 @@ const jobs = [
     department: "DPDC",
     type: "Administrative",
     deadline: "12 Nov 2026",
-    status: "Example",
+    status: "Open",
   },
 ];
 
@@ -132,24 +133,25 @@ const NoticeAndJobs = () => {
                   {notice.description}
                 </p>
 
-                <Link
-                  href={`/notices/${notice.id}`}
+                {/* <Link
+                  href="/"
                   className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                 >
                   Read details
                   <ChevronRight className="size-4" />
-                </Link>
+                </Link> */}
               </article>
             ))}
 
-            <Link
-              href="/notices"
+            {/* <Button
+              variant="outline"
+              disabled={true}
               className="mt-2 flex items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
             >
               <FileText className="size-4" />
               View All Notices
               <ChevronRight className="size-4" />
-            </Link>
+            </Button> */}
           </CardContent>
         </Card>
 
@@ -198,24 +200,25 @@ const NoticeAndJobs = () => {
                   </span>
                 </div>
 
-                <Link
-                  href={`/jobs/${job.id}`}
+                {/* <Link
+                  href="/"
                   className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                 >
                   View job details
                   <ChevronRight className="size-4" />
-                </Link>
+                </Link> */}
               </article>
             ))}
 
-            <Link
-              href="/jobs"
+            {/* <Button
+              variant="outline"
+              disabled={true}
               className="mt-2 flex items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
             >
               <BriefcaseBusiness className="size-4" />
               Explore All Jobs
               <ChevronRight className="size-4" />
-            </Link>
+            </Button> */}
           </CardContent>
         </Card>
       </div>
