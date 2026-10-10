@@ -27,7 +27,7 @@ const AddPowerDistributorForm = ({
     //   onSubmit: LoginSchema,
     // },
     onSubmit: ({ value }) => {
-      console.log("value", value);
+      // console.log("value", value);
       const data = {
         company_name: value.company_name,
       };

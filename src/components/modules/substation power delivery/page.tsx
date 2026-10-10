@@ -24,7 +24,7 @@ const AllocatedPowerInfo = () => {
       today,
     });
 
-  console.log("todaysDistributionData", todaysDistributionData);
+  // console.log("todaysDistributionData", todaysDistributionData);
 
   const isLoading = LoadingUserProfile || dataLoading;
   if (isLoading) {

@@ -48,7 +48,7 @@ const Companies = () => {
       today: today.toISOString().split("T")[0],
     });
   const status = powerStatus?.data || [];
-  console.log("status", status);
+  // console.log("status", status);
 
   // Adjust these field names to match your actual API response.
   const todayDemand = status.reduce(
@@ -62,7 +62,7 @@ const Companies = () => {
     (total: number, item: any) => total + Number(item.generatedPowerMW ?? 0),
     0,
   );
-  console.log("generated power", generatedPower);
+  // console.log("generated power", generatedPower);
 
   const coverage =
     todayDemand > 0 ? Math.min((generatedPower / todayDemand) * 100, 100) : 0;

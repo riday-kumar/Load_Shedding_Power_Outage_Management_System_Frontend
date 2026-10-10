@@ -72,8 +72,8 @@ const ProfilePictureUpload = () => {
 
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      console.log("Uploading:", selectedFile);
-      console.log("isSuccess", isSuccess);
+      // console.log("Uploading:", selectedFile);
+      // console.log("isSuccess", isSuccess);
 
       if (isSuccess?.success) {
         toast.add({

@@ -129,7 +129,7 @@ const AllUsersForAdmin = () => {
   ];
 
   const handleRoleChange = (value: UserRole) => {
-    console.log(value);
+    // console.log(value);
     setRole(value);
   };
 

@@ -38,7 +38,7 @@ const PowerAuthorityForAdmin = () => {
     isLoading: allUsersDataLoadingForAdmin,
     refetch: allUsersDataForAdminRefetch,
   } = useAllUsersForAdmin(role);
-  console.log("powerAuthData", allUsersDataForAdmin);
+  // console.log("powerAuthData", allUsersDataForAdmin);
 
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();

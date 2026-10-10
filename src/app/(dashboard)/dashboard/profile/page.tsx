@@ -54,7 +54,7 @@ export default function ProfilePage() {
   const { data, isLoading } = useUserProfile();
 
   const user: user = data.data;
-  console.log("user", user);
+  // console.log("user", user);
   const isCustomer = user.role === "CUSTOMER";
 
   if (isLoading) {

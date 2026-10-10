@@ -19,7 +19,7 @@ const MyCreatedSubscription = () => {
   const { data: getSubscriptions, isLoading: isLoadingSubscriptions } =
     useGetSubscriptions();
 
-  console.log("getSubscriptions", getSubscriptions);
+  // console.log("getSubscriptions", getSubscriptions);
 
   const { mutate: payForSubscription, isPending: paymentLoading } =
     usePayForSubscription();

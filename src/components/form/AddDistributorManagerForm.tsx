@@ -62,7 +62,7 @@ const DistributorManagerCreationForm = ({
     //   onSubmit: LoginSchema,
     // },
     onSubmit: ({ value }) => {
-      console.log("value", value);
+      // console.log("value", value);
       const data = {
         name: value.name,
         email: value.email,

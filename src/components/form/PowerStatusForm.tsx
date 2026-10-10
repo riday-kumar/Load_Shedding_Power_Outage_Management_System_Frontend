@@ -35,7 +35,7 @@ const PowerStatusForm = ({
     //   onSubmit: PowerStatusSchema,
     // },
     onSubmit: ({ value }) => {
-      console.log("value", value);
+      // console.log("value", value);
       const data = {
         generatedPowerMW: Number(value.generatedPowerMW),
         demand: Number(value.demand),

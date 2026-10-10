@@ -46,7 +46,7 @@ interface Props {
 }
 
 const CustomPagination = ({ totalPages, handlePageChange, page }: Props) => {
-  console.log(page);
+  // console.log(page);
 
   const goToPage = (page: number) => {
     handlePageChange(page);

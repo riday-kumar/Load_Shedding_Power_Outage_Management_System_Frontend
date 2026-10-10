@@ -68,7 +68,7 @@ const FeederForm = ({ setOpen, feederRefetch, feeder }: FeederAddFormProps) => {
         substation_id: value.substation_id,
       };
 
-      console.log("input data", data);
+      // console.log("input data", data);
 
       if (isEditMode) {
         updateFeeder(

@@ -33,7 +33,7 @@ const PendingLoadSheddingForManager = () => {
   const { data: pendingLoadShedding, isLoading: pendingLoadSheddingLoading } =
     useLoadSheddingForManager();
 
-  console.log("pending load shed", pendingLoadShedding);
+  // console.log("pending load shed", pendingLoadShedding);
 
   // ====================== approve schedule hook =============
   const { mutate: approveScheduleMutation, isPending: approveScheduleLoading } =

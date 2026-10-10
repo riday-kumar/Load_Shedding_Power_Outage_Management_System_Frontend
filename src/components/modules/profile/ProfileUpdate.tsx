@@ -58,11 +58,11 @@ const ProfileUpdate = () => {
         address: value.address,
         feederId: value.feederId,
       };
-      console.log("updateData", value);
+      // console.log("updateData", value);
 
       updateProfile(updateData, {
         onSuccess: (res) => {
-          console.log("res", res);
+          // console.log("res", res);
           toast.add({
             title: "Success!",
             description: "Profile updated Successfully",
@@ -74,7 +74,7 @@ const ProfileUpdate = () => {
           if (err instanceof FetchError) {
             errorMsg = err?.data?.message;
           }
-          console.log("error", err);
+          // console.log("error", err);
           toast.add({
             title: "Profile Update Failed",
             description: errorMsg || "Something Went Wrong. Please Try Again!",

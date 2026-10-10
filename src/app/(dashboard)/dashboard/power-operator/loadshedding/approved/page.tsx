@@ -61,7 +61,7 @@ const AllApprovedLoadShedding = () => {
   const { data: loadSheddingData, isLoading: loadSheddingDataLoading } =
     useGetAllLoadShedding({ operator: userOperatorId, state: "APPROVED" });
 
-  console.log("approved loadshedding", loadSheddingData);
+  // console.log("approved loadshedding", loadSheddingData);
 
   // ====================== publish schedule hook =============
   const { mutate: publishScheduleMutation, isPending: publishScheduleLoading } =

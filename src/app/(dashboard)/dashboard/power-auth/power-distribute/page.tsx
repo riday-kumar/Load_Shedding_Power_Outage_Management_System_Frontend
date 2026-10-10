@@ -58,7 +58,7 @@ const PowerDistribute = () => {
     },
 
     onSubmit: ({ value }) => {
-      console.log("Final Payload:", value.distributions);
+      // console.log("Final Payload:", value.distributions);
 
       addPowerDistribution(value.distributions, {
         onSuccess: async () => {

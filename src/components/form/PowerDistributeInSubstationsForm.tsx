@@ -45,7 +45,7 @@ const PowerDistributeInSubstationForm = () => {
 
   const substations = substationData?.data;
 
-  console.log("substations", substations);
+  // console.log("substations", substations);
 
   // ================= Get today's allocated power for the Company =================
   const {
@@ -56,7 +56,7 @@ const PowerDistributeInSubstationForm = () => {
     companyId: user.distributorManager.distributor_id,
   });
 
-  console.log("todays power", powerDistributionData);
+  // console.log("todays power", powerDistributionData);
 
   // ================= Add Power Distribution in substation =================
   const { mutate: addPowerDistribution, isPending: isAdding } =

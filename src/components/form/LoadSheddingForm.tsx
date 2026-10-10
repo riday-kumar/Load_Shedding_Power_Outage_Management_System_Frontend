@@ -36,7 +36,7 @@ const LoadSheddingForm = () => {
   // =================== get all feeders for operators ============
   const { data: feedersData, isLoading: feedersLoading } =
     useAllFeedersForOperator();
-  console.log("feeders data", feedersData?.data);
+  // console.log("feeders data", feedersData?.data);
   const feeders = feedersData?.data;
   //   ===================== create load shedding hook ==================
   const { mutate: addLoadShedding, isPending: PendingLoadShedding } =
@@ -54,7 +54,7 @@ const LoadSheddingForm = () => {
     //   onSubmit: LoginSchema,
     // },
     onSubmit: ({ value }) => {
-      console.log("value", value);
+      // console.log("value", value);
       const data = {
         feeder_id: value.feeder_id,
         start_time: toBangladeshISO(value.start_time),
@@ -62,7 +62,7 @@ const LoadSheddingForm = () => {
         plannedLoadShedding: value.plannedLoadShedding,
       };
 
-      console.log("data", data);
+      // console.log("data", data);
 
       addLoadShedding(data, {
         onSuccess: async () => {
