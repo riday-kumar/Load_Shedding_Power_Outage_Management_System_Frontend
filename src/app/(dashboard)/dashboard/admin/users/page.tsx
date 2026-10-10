@@ -142,7 +142,7 @@ const AllUsersForAdmin = () => {
       <Heading text="All Users" />
 
       <div>
-        <Select onValueChange={(v) => handleRoleChange(v)}>
+        <Select onValueChange={(v) => handleRoleChange(v as UserRole)}>
           <SelectTrigger className="w-45">
             <SelectValue placeholder="Role" />
           </SelectTrigger>

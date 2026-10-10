@@ -8,7 +8,7 @@ export default function SignupPage() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <div className="flex items-center gap-2 font-medium">
-            <Logo textSize={30} />
+            <Logo textClassName="lg:text-3xl" />
           </div>
         </div>
         <div className="flex flex-1 items-center justify-center">

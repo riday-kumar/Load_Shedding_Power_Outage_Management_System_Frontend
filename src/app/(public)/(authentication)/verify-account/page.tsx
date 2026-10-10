@@ -105,7 +105,7 @@ const VerifyEmail = () => {
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="space-y-5">
-        <Logo textSize={30} />
+        <Logo textClassName="lg:text-3xl" />
 
         <Card className="mx-auto max-w-md">
           <form
