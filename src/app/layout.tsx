@@ -42,12 +42,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         robotoHeading.variable,
       )}
     >
-      <Provider>
-        <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col">
+        <Provider>
           {children}
           <Toaster />
-        </body>
-      </Provider>
+        </Provider>
+      </body>
     </html>
   );
 }

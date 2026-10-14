@@ -37,14 +37,14 @@ const Header = () => {
   const handleLogout = () => {
     logOut(undefined, {
       onSuccess: () => {
+        queryClient.removeQueries({
+          queryKey: ["user"],
+        });
+
         toast.add({
           title: "LogOut!",
           description: "Logged out successfully",
           type: "success",
-        });
-
-        queryClient.removeQueries({
-          queryKey: ["user"],
         });
       },
 
