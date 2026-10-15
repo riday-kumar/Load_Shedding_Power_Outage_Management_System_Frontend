@@ -4,6 +4,12 @@ A modern, responsive web application designed to help users monitor load-sheddin
 
 The frontend provides role-based dashboards for administrators, power authorities, distributor managers, power operators, technicians, and customers.
 
+## Live Demo
+- [Load Shedding & Power Outage Management System Live](https://loadshedding-power-management.vercel.app/)
+- [Backend Live](https://load-shedding-power-outage-manageme-tau.vercel.app/)
+- [Frontend Repository](https://github.com/riday-kumar/Load_Shedding_Power_Outage_Management_System_Frontend.git)
+- [Backend Repository](https://github.com/riday-kumar/Load_Shedding_Power_Outage_Management_System_Server.git)
+
 ## 🚀 Features
 
 - **Authentication & Authorization** — Secure login, Google authentication, user profile management, and role-based access control.
@@ -170,19 +176,6 @@ The frontend can be deployed to platforms that support Next.js, such as Vercel.
 
 Do not commit `.env.local` or any file containing secrets to Git.
 
-## 🤝 Contributing
-
-Contributions and suggestions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Implement your changes.
-4. Test the affected functionality.
-5. Submit a pull request with a clear description.
-
-## 📄 License
-
-Add the appropriate license information here if the project is distributed under an open-source license.
 
 ---
 
