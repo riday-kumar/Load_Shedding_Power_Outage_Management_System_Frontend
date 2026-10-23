@@ -41,6 +41,63 @@ const distributors = [
   },
 ];
 
+const companiesInfo = [
+  {
+    name: "BPDB",
+    fullName: "Bangladesh Power Development Board",
+    number: "16200",
+    bg: "bg-sky-50 dark:bg-sky-950/30",
+    iconBg: "bg-sky-100 dark:bg-sky-900",
+    iconColor: "text-sky-700 dark:text-sky-300",
+    border: "border-sky-200 dark:border-sky-900",
+  },
+  {
+    name: "BREB",
+    fullName: "Bangladesh Rural Electrification Board",
+    number: "16899",
+    bg: "bg-emerald-50 dark:bg-emerald-950/30",
+    iconBg: "bg-emerald-100 dark:bg-emerald-900",
+    iconColor: "text-emerald-700 dark:text-emerald-300",
+    border: "border-emerald-200 dark:border-emerald-900",
+  },
+  {
+    name: "DESCO",
+    fullName: "Dhaka Electric Supply Company",
+    number: "16120",
+    bg: "bg-violet-50 dark:bg-violet-950/30",
+    iconBg: "bg-violet-100 dark:bg-violet-900",
+    iconColor: "text-violet-700 dark:text-violet-300",
+    border: "border-violet-200 dark:border-violet-900",
+  },
+  {
+    name: "DPDC",
+    fullName: "Dhaka Power Distribution Company",
+    number: "16116",
+    bg: "bg-amber-50 dark:bg-amber-950/30",
+    iconBg: "bg-amber-100 dark:bg-amber-900",
+    iconColor: "text-amber-700 dark:text-amber-300",
+    border: "border-amber-200 dark:border-amber-900",
+  },
+  {
+    name: "WZPDCL",
+    fullName: "West Zone Power Distribution Company",
+    number: "16117",
+    bg: "bg-rose-50 dark:bg-rose-950/30",
+    iconBg: "bg-rose-100 dark:bg-rose-900",
+    iconColor: "text-rose-700 dark:text-rose-300",
+    border: "border-rose-200 dark:border-rose-900",
+  },
+  {
+    name: "NESCO",
+    fullName: "Northern Electricity Supply Company",
+    number: "16603",
+    bg: "bg-teal-50 dark:bg-teal-950/30",
+    iconBg: "bg-teal-100 dark:bg-teal-900",
+    iconColor: "text-teal-700 dark:text-teal-300",
+    border: "border-teal-200 dark:border-teal-900",
+  },
+];
+
 const Companies = () => {
   const today = new Date();
   const { data: powerStatus, isLoading: loadingPowerStatus } =
@@ -94,7 +151,7 @@ const Companies = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {distributors.map((company) => (
+            {companiesInfo.map((company) => (
               <Card
                 key={company.name}
                 className="transition-colors hover:border-primary/50"
@@ -109,6 +166,13 @@ const Companies = () => {
 
                     <p className="text-xs leading-relaxed text-muted-foreground">
                       {company.fullName}
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Call Center</p>
+                    <p className="mt-1 text-2xl font-bold tracking-wide">
+                      {company.number}
                     </p>
                   </div>
                 </CardContent>
