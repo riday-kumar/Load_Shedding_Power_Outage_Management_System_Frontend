@@ -1,6 +1,6 @@
 "use client";
 
-import { Zap, Activity, Building2 } from "lucide-react";
+import { Zap, Activity } from "lucide-react";
 
 import {
   Card,
@@ -14,91 +14,7 @@ import { Progress } from "@/components/ui/progress";
 import { useGetPowerStatusInfo } from "@/hooks";
 import PowerOverviewSkeleton from "@/components/skeleton/home/PowerOverViewSkeleton";
 
-const distributors = [
-  {
-    name: "BPDB",
-    fullName: "Bangladesh Power Development Board",
-  },
-  {
-    name: "BREB",
-    fullName: "Bangladesh Rural Electrification Board",
-  },
-  {
-    name: "DESCO",
-    fullName: "Dhaka Electric Supply Company",
-  },
-  {
-    name: "DPDC",
-    fullName: "Dhaka Power Distribution Company",
-  },
-  {
-    name: "WZPDCL",
-    fullName: "West Zone Power Distribution Company",
-  },
-  {
-    name: "NESCO",
-    fullName: "Northern Electricity Supply Company",
-  },
-];
-
-const companiesInfo = [
-  {
-    name: "BPDB",
-    fullName: "Bangladesh Power Development Board",
-    number: "16200",
-    bg: "bg-sky-50 dark:bg-sky-950/30",
-    iconBg: "bg-sky-100 dark:bg-sky-900",
-    iconColor: "text-sky-700 dark:text-sky-300",
-    border: "border-sky-200 dark:border-sky-900",
-  },
-  {
-    name: "BREB",
-    fullName: "Bangladesh Rural Electrification Board",
-    number: "16899",
-    bg: "bg-emerald-50 dark:bg-emerald-950/30",
-    iconBg: "bg-emerald-100 dark:bg-emerald-900",
-    iconColor: "text-emerald-700 dark:text-emerald-300",
-    border: "border-emerald-200 dark:border-emerald-900",
-  },
-  {
-    name: "DESCO",
-    fullName: "Dhaka Electric Supply Company",
-    number: "16120",
-    bg: "bg-violet-50 dark:bg-violet-950/30",
-    iconBg: "bg-violet-100 dark:bg-violet-900",
-    iconColor: "text-violet-700 dark:text-violet-300",
-    border: "border-violet-200 dark:border-violet-900",
-  },
-  {
-    name: "DPDC",
-    fullName: "Dhaka Power Distribution Company",
-    number: "16116",
-    bg: "bg-amber-50 dark:bg-amber-950/30",
-    iconBg: "bg-amber-100 dark:bg-amber-900",
-    iconColor: "text-amber-700 dark:text-amber-300",
-    border: "border-amber-200 dark:border-amber-900",
-  },
-  {
-    name: "WZPDCL",
-    fullName: "West Zone Power Distribution Company",
-    number: "16117",
-    bg: "bg-rose-50 dark:bg-rose-950/30",
-    iconBg: "bg-rose-100 dark:bg-rose-900",
-    iconColor: "text-rose-700 dark:text-rose-300",
-    border: "border-rose-200 dark:border-rose-900",
-  },
-  {
-    name: "NESCO",
-    fullName: "Northern Electricity Supply Company",
-    number: "16603",
-    bg: "bg-teal-50 dark:bg-teal-950/30",
-    iconBg: "bg-teal-100 dark:bg-teal-900",
-    iconColor: "text-teal-700 dark:text-teal-300",
-    border: "border-teal-200 dark:border-teal-900",
-  },
-];
-
-const Companies = () => {
+const PowerOverview = () => {
   const today = new Date();
   const { data: powerStatus, isLoading: loadingPowerStatus } =
     useGetPowerStatusInfo({
@@ -132,56 +48,8 @@ const Companies = () => {
 
   return (
     <section className="container mx-auto px-4 py-12 md:py-16">
-      <div className="grid gap-8 lg:grid-cols-5">
-        {/* Left: Distribution companies */}
-        <div className="space-y-6 lg:col-span-3">
-          <div className="space-y-2">
-            <p className="text-sm font-medium uppercase tracking-widest text-primary">
-              Power Distribution
-            </p>
-
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Bangladesh has 6 power distribution companies
-            </h2>
-
-            <p className="text-muted-foreground">
-              Explore the major electricity distribution organizations serving
-              Bangladesh.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {companiesInfo.map((company) => (
-              <Card
-                key={company.name}
-                className="transition-colors hover:border-primary/50"
-              >
-                <CardContent className="flex h-full flex-col gap-3 p-4">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Building2 className="size-5" />
-                  </div>
-
-                  <div className="space-y-1">
-                    <h3 className="font-bold">{company.name}</h3>
-
-                    <p className="text-xs leading-relaxed text-muted-foreground">
-                      {company.fullName}
-                    </p>
-                  </div>
-                  <hr />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Call Center</p>
-                    <p className="mt-1 text-2xl font-bold tracking-wide">
-                      {company.number}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: Power statistics */}
+      <div className="grid gap-8 lg:grid-cols-7 items-center">
+        {/* 1st column */}
         <div className="space-y-5 lg:col-span-2">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">
@@ -228,7 +96,15 @@ const Companies = () => {
               </div>
             </CardHeader>
           </Card>
+        </div>
 
+        {/* 2nd column */}
+        <div className="space-y-5 lg:col-span-3">
+          <img src="light.png" alt="" />
+        </div>
+
+        {/* 3rd column */}
+        <div className="space-y-5 lg:col-span-2">
           <Card>
             <CardContent className="space-y-4 p-5">
               <div className="flex items-center justify-between gap-2">
@@ -250,15 +126,10 @@ const Companies = () => {
               </div>
             </CardContent>
           </Card>
-
-          <p className="text-xs text-muted-foreground">
-            Statistics are illustrative. Connect a reliable live data source
-            before displaying these as today&apos;s official figures.
-          </p>
         </div>
       </div>
     </section>
   );
 };
 
-export default Companies;
+export default PowerOverview;

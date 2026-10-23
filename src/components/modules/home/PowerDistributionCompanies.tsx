@@ -53,7 +53,7 @@ const companies = [
 
 export default function PowerDistributionCompanies() {
   return (
-    <section className="overflow-hidden bg-white px-4 py-16 sm:px-6 lg:py-24">
+    <section className="bg-bottom-right bg-no-repeat overflow-hidden bg-white px-4 py-16 sm:px-6 lg:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Section heading */}
         <div className="mx-auto mb-12 max-w-2xl text-center">

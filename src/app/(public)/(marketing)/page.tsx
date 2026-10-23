@@ -1,7 +1,5 @@
 import CallCenter from "@/components/modules/home/CallCenter";
-import HomeCarousel from "@/components/modules/home/carousel";
-import Companies from "@/components/modules/home/Companies";
-import HeroSection from "@/components/modules/home/Hero";
+import PowerOverview from "@/components/modules/home/Companies";
 import HowPowerSyncWorks from "@/components/modules/home/HowPowerSyncWorks";
 import NoticeAndJobs from "@/components/modules/home/NoticeAndJobs";
 import PowerDistributionCompanies from "@/components/modules/home/PowerDistributionCompanies";
@@ -14,7 +12,7 @@ const HomePage = () => {
       {/* <HeroSection /> */}
       {/* <HomeCarousel /> */}
       <PowerDistributionCompanies />
-      <Companies />
+      <PowerOverview />
       <NoticeAndJobs />
       <CallCenter />
       <HowPowerSyncWorks />
