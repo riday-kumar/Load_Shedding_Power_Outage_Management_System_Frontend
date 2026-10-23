@@ -1,7 +1,12 @@
 "use client";
 import Logo from "@/assets/svg/Logo";
-import AuthLoading from "@/components/auth/auth-loading";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
@@ -13,12 +18,14 @@ import { toast } from "@/components/ui/toast";
 import { useLogout, useUserProfile } from "@/hooks";
 import { user } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
-import { Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Header = () => {
+  const { setTheme } = useTheme();
   const router = useRouter();
   const { data, isLoading } = useUserProfile();
   // console.log({
@@ -146,7 +153,7 @@ const Header = () => {
   // }
 
   return (
-    <div className="z-50 sticky top-0 overflow-hidden w-full h-20 bg-white shadow-xl">
+    <div className="dark:bg-black z-50 sticky top-0 overflow-hidden w-full h-20 bg-white shadow-xl">
       <div className="w-11/12 mx-auto h-full flex justify-between items-center">
         {/* logo */}
         <div>
@@ -163,7 +170,31 @@ const Header = () => {
         </nav>
 
         {/* desktop auth buttons */}
-        <div className="hidden md:flex gap-2">{authButtons()}</div>
+        <div className="hidden md:flex gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <Button variant="outline" size="icon">
+                  <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              }
+            ></DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {authButtons()}
+        </div>
 
         {/* mobile hamburger + drawer */}
         <div className="md:hidden">

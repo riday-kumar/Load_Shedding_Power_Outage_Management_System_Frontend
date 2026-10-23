@@ -53,7 +53,7 @@ const companies = [
 
 export default function PowerDistributionCompanies() {
   return (
-    <section className="bg-bottom-right bg-no-repeat overflow-hidden bg-white px-4 py-16 sm:px-6 lg:py-24">
+    <section className="dark:bg-black bg-bottom-right bg-no-repeat overflow-hidden bg-white px-4 py-16 sm:px-6 lg:py-24">
       <div className="mx-auto max-w-7xl">
         {/* Section heading */}
         <div className="mx-auto mb-12 max-w-2xl text-center">
@@ -61,7 +61,7 @@ export default function PowerDistributionCompanies() {
             Power Distribution Network
           </span>
 
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="dark:text-white text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Bangladesh&apos;s Power Distribution Companies
           </h2>
 
