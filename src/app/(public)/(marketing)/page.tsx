@@ -9,15 +9,12 @@ import YouTubeVideos from "@/components/modules/home/YoutubeVideos";
 const HomePage = () => {
   return (
     <div className="space-y-5 my-10">
-      {/* <HeroSection /> */}
-      {/* <HomeCarousel /> */}
       <PowerDistributionCompanies />
       <PowerOverview />
       <NoticeAndJobs />
       <CallCenter />
       <HowPowerSyncWorks />
       <SubscriptionSection />
-      <YouTubeVideos />
     </div>
   );
 };

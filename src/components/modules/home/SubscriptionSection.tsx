@@ -73,7 +73,7 @@ const benefits = [
 
 const SubscriptionSection = () => {
   return (
-    <section className="bg-muted/30 py-16 md:py-24">
+    <section className=" py-16 md:py-24">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-2xl text-center">

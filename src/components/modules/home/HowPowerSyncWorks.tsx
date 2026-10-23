@@ -76,7 +76,7 @@ const benefits = [
 
 const HowPowerSyncWorks = () => {
   return (
-    <section className="overflow-hidden bg-muted/30 py-16 md:py-24">
+    <section className="overflow-hidden bg-muted/30 py-16 md:py-24 rounded-lg">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="mx-auto mb-14 max-w-3xl text-center">

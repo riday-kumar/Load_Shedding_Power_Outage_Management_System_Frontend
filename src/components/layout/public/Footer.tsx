@@ -22,10 +22,10 @@ const serviceLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-slate-300">
+    <footer className="bg-[#143a2b] text-white">
       <div className="w-11/12 mx-auto px-4">
         {/* Main footer */}
-        <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:py-16">
+        <div className="bg-[url('/footerImg.png')] bg-no-repeat bg-bottom grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:py-16">
           {/* Brand */}
           <div className="space-y-5">
             <Link href="/" className="inline-flex items-center gap-3">
@@ -86,7 +86,7 @@ const Footer = () => {
                 <li key={link.href + link.label}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-1 text-sm text-slate-400 transition-colors hover:text-blue-400"
+                    className="group inline-flex items-center gap-1 text-sm text-slate-400 transition-colors hover:text-white"
                   >
                     {link.label}
                     <ArrowUpRight className="size-3 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -107,7 +107,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-1 text-sm text-slate-400 transition-colors hover:text-blue-400"
+                    className="group inline-flex items-center gap-1 text-sm text-slate-400 transition-colors hover:text-white"
                   >
                     {link.label}
                     <ArrowUpRight className="size-3 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -127,7 +127,7 @@ const Footer = () => {
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 text-blue-400">
+                <span className="mt-0.5 text-white">
                   <BellRing className="size-5" />
                 </span>
 
@@ -142,7 +142,7 @@ const Footer = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 text-blue-400">
+                <span className="mt-0.5 text-white">
                   <Mail className="size-5" />
                 </span>
 
@@ -157,7 +157,7 @@ const Footer = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 text-blue-400">
+                <span className="mt-0.5 text-white">
                   <MapPin className="size-5" />
                 </span>
 
@@ -172,7 +172,7 @@ const Footer = () => {
               {/* Replace with your real support email when available */}
               <a
                 href="mailto:support@yourdomain.com"
-                className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 transition-colors hover:text-blue-300"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-blue-300"
               >
                 <Mail className="size-4" />
                 Contact Support
