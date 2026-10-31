@@ -31,7 +31,6 @@ import { Button } from "../ui/button";
 import { useLogout } from "@/hooks";
 import { toast } from "../ui/toast";
 import { useQueryClient } from "@tanstack/react-query";
-import { logOut } from "../../../service/logOut";
 
 // This is sample data.
 const data = {
@@ -72,35 +71,31 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
   // const { mutate: logOut } = useLogout();
 
   const pathName = usePathname();
-  const router = useRouter();
 
   const routes: SidebarItems = sidebarRoutes[role] ?? {
     navMain: [],
   };
   // console.log("routes", routes);
 
-  const queryClient = useQueryClient();
+  const { mutateAsync: logoutUser } = useLogout();
 
   const handleLogout = async (action: string) => {
-    if (action === "logout") {
-      await logOut();
-      try {
-        queryClient.removeQueries({
-          queryKey: ["user"],
-        });
-        toast.add({
-          title: "LogOut!",
-          description: "Logged out successfully",
-          type: "success",
-        });
-        router.push("/");
-      } catch (error) {
-        toast.add({
-          title: "Logout failed",
-          description: "Something Went Wrong",
-          type: "error",
-        });
-      }
+    if (action !== "logout") return;
+
+    try {
+      await logoutUser();
+
+      toast.add({
+        title: "LogOut!",
+        description: "Logged out successfully",
+        type: "success",
+      });
+    } catch (error) {
+      toast.add({
+        title: "Logout failed",
+        description: "Something Went Wrong",
+        type: "error",
+      });
     }
   };
 

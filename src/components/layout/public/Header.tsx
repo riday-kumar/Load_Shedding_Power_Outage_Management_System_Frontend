@@ -40,8 +40,6 @@ const Header = () => {
   const { mutateAsync: logoutUser } = useLogout();
   const [open, setOpen] = useState(false);
 
-  const queryClient = useQueryClient();
-
   const handleLogout = async (action: string) => {
     if (action !== "logout") return;
 
