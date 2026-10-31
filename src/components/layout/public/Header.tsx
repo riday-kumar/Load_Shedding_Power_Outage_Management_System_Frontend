@@ -36,7 +36,7 @@ const Header = () => {
   //   status,
   // });
   const user: user = data?.data;
-  const { mutate: logOut } = useLogout();
+  const { mutate: logOut, isPending: logoutPending } = useLogout();
   const [open, setOpen] = useState(false);
 
   const queryClient = useQueryClient();
@@ -114,7 +114,7 @@ const Header = () => {
   const authButtons = (inDrawer = false) => {
     const close = () => inDrawer && setOpen(false);
 
-    if (isLoading) {
+    if (isLoading || logoutPending) {
       return (
         <>
           <div className="h-10 w-20 animate-pulse rounded-md bg-gray-200" />
