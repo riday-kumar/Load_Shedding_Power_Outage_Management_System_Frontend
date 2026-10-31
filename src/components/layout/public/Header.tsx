@@ -41,28 +41,48 @@ const Header = () => {
 
   const queryClient = useQueryClient();
 
-  const handleLogout = () => {
-    logOut(undefined, {
-      onSuccess: () => {
-        queryClient.removeQueries({
-          queryKey: ["user"],
-        });
+  const handleLogout = async () => {
+    //  logOut(undefined, {
+    //   onSuccess: () => {
+    //     queryClient.removeQueries({
+    //       queryKey: ["user"],
+    //     });
 
-        toast.add({
-          title: "LogOut!",
-          description: "Logged out successfully",
-          type: "success",
-        });
-      },
+    //     toast.add({
+    //       title: "LogOut!",
+    //       description: "Logged out successfully",
+    //       type: "success",
+    //     });
+    //   },
 
-      onError: () => {
-        toast.add({
-          title: "Logout failed",
-          description: "Something Went Wrong",
-          type: "error",
-        });
-      },
-    });
+    //   onError: () => {
+    //     toast.add({
+    //       title: "Logout failed",
+    //       description: "Something Went Wrong",
+    //       type: "error",
+    //     });
+    //   },
+    // });
+
+    try {
+      await logOut();
+
+      queryClient.removeQueries({
+        queryKey: ["user"],
+      });
+
+      toast.add({
+        title: "LogOut!",
+        description: "Logged out successfully",
+        type: "success",
+      });
+    } catch (error) {
+      toast.add({
+        title: "Logout failed",
+        description: "Something Went Wrong",
+        type: "error",
+      });
+    }
   };
 
   const role = user?.role;
