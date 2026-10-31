@@ -37,53 +37,28 @@ const Header = () => {
   //   status,
   // });
   const user: user = data?.data;
-  const { mutate: logOut, isPending: logoutPending } = useLogout();
+  const { mutateAsync: logoutUser } = useLogout();
   const [open, setOpen] = useState(false);
 
   const queryClient = useQueryClient();
 
   const handleLogout = async (action: string) => {
-    //  logOut(undefined, {
-    //   onSuccess: () => {
-    //     queryClient.removeQueries({
-    //       queryKey: ["user"],
-    //     });
+    if (action !== "logout") return;
 
-    //     toast.add({
-    //       title: "LogOut!",
-    //       description: "Logged out successfully",
-    //       type: "success",
-    //     });
-    //   },
+    try {
+      await logoutUser();
 
-    //   onError: () => {
-    //     toast.add({
-    //       title: "Logout failed",
-    //       description: "Something Went Wrong",
-    //       type: "error",
-    //     });
-    //   },
-    // });
-
-    if (action === "logout") {
-      try {
-        logOut();
-        queryClient.removeQueries({
-          queryKey: ["user"],
-        });
-
-        toast.add({
-          title: "LogOut!",
-          description: "Logged out successfully",
-          type: "success",
-        });
-      } catch (error) {
-        toast.add({
-          title: "Logout failed",
-          description: "Something Went Wrong",
-          type: "error",
-        });
-      }
+      toast.add({
+        title: "LogOut!",
+        description: "Logged out successfully",
+        type: "success",
+      });
+    } catch (error) {
+      toast.add({
+        title: "Logout failed",
+        description: "Something Went Wrong",
+        type: "error",
+      });
     }
   };
 

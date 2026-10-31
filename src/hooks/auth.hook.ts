@@ -6,7 +6,8 @@ import {
   userRegister,
   verifyAccount,
 } from "@/api";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
   return useMutation({
@@ -41,7 +42,14 @@ export const useUserProfile = () => {
 };
 
 export const useLogout = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation({
     mutationFn: logOut,
+    onSuccess: async () => {
+      await queryClient.cancelQueries({ queryKey: ["user"] }); // stop in-flight user fetches
+      queryClient.setQueryData(["user"], null); // clear user without refetching
+      router.replace("/login"); // leave the page that uses useUserProfile
+    },
   });
 };
