@@ -31,6 +31,7 @@ import { Button } from "../ui/button";
 import { useLogout } from "@/hooks";
 import { toast } from "../ui/toast";
 import { useQueryClient } from "@tanstack/react-query";
+import { logOut } from "../../../service/logOut";
 
 // This is sample data.
 const data = {
@@ -68,7 +69,7 @@ const sidebarRoutes: Partial<Record<UserRole, SidebarItems>> = {
 };
 
 export function DashboardSidebar({ role }: { role: UserRole }) {
-  const { mutate: logOut } = useLogout();
+  // const { mutate: logOut } = useLogout();
 
   const pathName = usePathname();
   const router = useRouter();
@@ -80,30 +81,27 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
 
   const queryClient = useQueryClient();
 
-  const handleLogout = () => {
-    logOut(undefined, {
-      onSuccess: () => {
+  const handleLogout = async (action: string) => {
+    if (action === "logout") {
+      await logOut();
+      try {
+        queryClient.removeQueries({
+          queryKey: ["user"],
+        });
         toast.add({
           title: "LogOut!",
           description: "Logged out successfully",
           type: "success",
         });
-
-        queryClient.removeQueries({
-          queryKey: ["user"],
-        });
-
         router.push("/");
-      },
-
-      onError: () => {
+      } catch (error) {
         toast.add({
           title: "Logout failed",
           description: "Something Went Wrong",
           type: "error",
         });
-      },
-    });
+      }
+    }
   };
 
   return (
@@ -170,7 +168,7 @@ export function DashboardSidebar({ role }: { role: UserRole }) {
       <SidebarRail />
       {/* ===================== start sidebar footer ================== */}
       <SidebarFooter>
-        <Button onClick={handleLogout} variant={"destructive"}>
+        <Button onClick={() => handleLogout("logout")} variant={"destructive"}>
           Logout
         </Button>
       </SidebarFooter>

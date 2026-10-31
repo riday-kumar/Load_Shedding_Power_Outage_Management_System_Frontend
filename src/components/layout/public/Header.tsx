@@ -23,6 +23,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { logOut } from "../../../../service/logOut";
 
 const Header = () => {
   const { setTheme } = useTheme();
@@ -36,12 +37,12 @@ const Header = () => {
   //   status,
   // });
   const user: user = data?.data;
-  const { mutate: logOut, isPending: logoutPending } = useLogout();
+  // const { mutate: logOut, isPending: logoutPending } = useLogout();
   const [open, setOpen] = useState(false);
 
   const queryClient = useQueryClient();
 
-  const handleLogout = async () => {
+  const handleLogout = async (action: string) => {
     //  logOut(undefined, {
     //   onSuccess: () => {
     //     queryClient.removeQueries({
@@ -64,24 +65,25 @@ const Header = () => {
     //   },
     // });
 
-    try {
-      await logOut();
+    if (action === "logout") {
+      try {
+        await logOut();
+        queryClient.removeQueries({
+          queryKey: ["user"],
+        });
 
-      queryClient.removeQueries({
-        queryKey: ["user"],
-      });
-
-      toast.add({
-        title: "LogOut!",
-        description: "Logged out successfully",
-        type: "success",
-      });
-    } catch (error) {
-      toast.add({
-        title: "Logout failed",
-        description: "Something Went Wrong",
-        type: "error",
-      });
+        toast.add({
+          title: "LogOut!",
+          description: "Logged out successfully",
+          type: "success",
+        });
+      } catch (error) {
+        toast.add({
+          title: "Logout failed",
+          description: "Something Went Wrong",
+          type: "error",
+        });
+      }
     }
   };
 
@@ -114,7 +116,7 @@ const Header = () => {
   const authButtons = (inDrawer = false) => {
     const close = () => inDrawer && setOpen(false);
 
-    if (isLoading || logoutPending) {
+    if (isLoading) {
       return (
         <>
           <div className="h-10 w-20 animate-pulse rounded-md bg-gray-200" />
@@ -149,7 +151,7 @@ const Header = () => {
       <>
         <Button
           onClick={() => {
-            handleLogout();
+            handleLogout("logout");
             close();
           }}
           className="bg-red-primary text-white"
