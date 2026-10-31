@@ -37,7 +37,7 @@ const Header = () => {
   //   status,
   // });
   const user: user = data?.data;
-  // const { mutate: logOut, isPending: logoutPending } = useLogout();
+  const { mutate: logOut, isPending: logoutPending } = useLogout();
   const [open, setOpen] = useState(false);
 
   const queryClient = useQueryClient();
@@ -67,7 +67,7 @@ const Header = () => {
 
     if (action === "logout") {
       try {
-        await logOut();
+        logOut();
         queryClient.removeQueries({
           queryKey: ["user"],
         });
